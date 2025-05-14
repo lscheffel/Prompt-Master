@@ -2,29 +2,156 @@
 {% block title %}Detalhes do Prompt{% endblock %}
 
 {% block content %}
-<div class="bg-blue-50 text-gray-900 rounded-lg shadow-md p-6">
-    <h1 class="text-2xl font-bold mb-4">{{ prompt.project_name }}</h1>
-    <p class="mb-2 text-sm text-gray-500">Criado em: {{ prompt.created_at.strftime('%d/%m/%Y %H:%M') }}</p>
-    
-    {% if prompt.category == 'texto' %}
-        <p><strong>Descrição:</strong> {{ prompt.project_description }}</p>
-        <p><strong>Objetivos:</strong> {{ prompt.project_objectives }}</p>
-        <p><strong>Linguagem:</strong> {{ prompt.language }}</p>
-        <p><strong>Temperatura:</strong> {{ prompt.temperature }}</p>
-        <p><strong>Tom:</strong> {{ prompt.tone }}</p>
-        <p><strong>Persona:</strong> {{ prompt.persona }}</p>
-        <p><strong>Protocolos:</strong> {{ prompt.protocols }}</p>
-    {% elif prompt.category == 'imagem' %}
-        <p><strong>Prompt Positivo:</strong> {{ prompt.positive_prompt }}</p>
-        <p><strong>Prompt Negativo:</strong> {{ prompt.negative_prompt }}</p>
-        <p><strong>Estilo:</strong> {{ prompt.style }}</p>
-        <p><strong>Material:</strong> {{ prompt.material }}</p>
-        <p><strong>Textura da Superfície:</strong> {{ prompt.surface_texture }}</p>
-        <p><strong>Tipo de Iluminação:</strong> {{ prompt.lighting_type }}</p>
-        <p><strong>Intensidade da Luz:</strong> {{ prompt.lighting_intensity }}</p>
-        <p><strong>Direção da Luz:</strong> {{ prompt.lighting_direction }}</p>
-        <p><strong>Cor Primária:</strong> {{ prompt.primary_color }}</p>
-        <p><strong>Pós-processamento:</strong> {{ prompt.post_processing }}</p>
+<div class="bg-gradient-to-br from-blue-50 to-blue-100 text-gray-900 rounded-xl shadow-lg p-8">
+    {% if prompt %}
+    <!-- Botões de Ação -->
+    <div class="flex flex-wrap gap-4 mb-8">
+        <a href="{{ url_for('list_prompts') }}" class="btn-secondary">
+            <i class="bi bi-arrow-left"></i> Voltar
+        </a>
+        <a href="{{ url_for('edit_prompt', id=prompt.id) }}" class="btn-primary">
+            <i class="bi bi-pencil"></i> Editar
+        </a>
+        <form action="{{ url_for('delete_prompt_by_id', id=prompt.id) }}" method="POST" class="inline">
+            <button type="submit" class="btn-danger"
+                onclick="return confirm('Tem certeza que deseja excluir este prompt?')">
+                <i class="bi bi-trash"></i> Excluir
+            </button>
+        </form>
+        <button onclick="exportPrompt()" class="btn-success">
+            <i class="bi bi-download"></i> Exportar
+        </button>
+    </div>
+
+    <!-- Conteúdo do Prompt -->
+    <div class="bg-white rounded-xl shadow-md p-6">
+        <div class="mb-6">
+            <h1 class="text-2xl font-bold text-blue-900 mb-2">{{ prompt.project_name or 'Sem nome' }}</h1>
+            <p class="text-gray-600">{{ prompt.project_description or 'Sem descrição' }}</p>
+            <p class="text-sm text-gray-500 mt-2">Criado em: {{ prompt.created_at.strftime('%d/%m/%Y') if prompt.created_at else 'Data não disponível' }}</p>
+        </div>
+
+        {% if prompt.category == 'texto' %}
+        <div class="space-y-4">
+            <div>
+                <h2 class="text-lg font-semibold text-blue-800 mb-2">Objetivos</h2>
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <p class="text-gray-700 whitespace-pre-wrap">{{ prompt.project_objectives or 'Sem objetivos' }}</p>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-lg font-semibold text-blue-800 mb-2">Linguagem</h2>
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <p class="text-gray-700">{{ prompt.language or 'Não especificada' }}</p>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-lg font-semibold text-blue-800 mb-2">Temperatura</h2>
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <p class="text-gray-700">{{ prompt.temperature or 'Não especificada' }}</p>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-lg font-semibold text-blue-800 mb-2">Tom</h2>
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <p class="text-gray-700">{{ prompt.tone or 'Não especificado' }}</p>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-lg font-semibold text-blue-800 mb-2">Persona</h2>
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <p class="text-gray-700 whitespace-pre-wrap">{{ prompt.persona or 'Não especificada' }}</p>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-lg font-semibold text-blue-800 mb-2">Protocolos</h2>
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <p class="text-gray-700 whitespace-pre-wrap">{{ prompt.protocols or 'Sem protocolos' }}</p>
+                </div>
+            </div>
+        </div>
+        {% elif prompt.category == 'imagem' %}
+        <div class="space-y-4">
+            <div>
+                <h2 class="text-lg font-semibold text-green-800 mb-2">Prompt Positivo</h2>
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <p class="text-gray-700 whitespace-pre-wrap">{{ prompt.positive_prompt or 'Sem prompt positivo' }}</p>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-lg font-semibold text-green-800 mb-2">Prompt Negativo</h2>
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <p class="text-gray-700 whitespace-pre-wrap">{{ prompt.negative_prompt or 'Sem prompt negativo' }}</p>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-lg font-semibold text-green-800 mb-2">Configurações</h2>
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <p class="text-gray-700 whitespace-pre-wrap">{{ prompt.parameters or 'Sem configurações' }}</p>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <p class="text-yellow-800">Categoria de prompt não reconhecida.</p>
+        </div>
+        {% endif %}
+    </div>
+    {% else %}
+    <div class="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+        <h2 class="text-xl font-semibold text-red-800 mb-2">Erro ao carregar o prompt</h2>
+        <p class="text-red-600">O prompt solicitado não foi encontrado ou não está disponível.</p>
+        <a href="{{ url_for('list_prompts') }}" class="btn-secondary mt-4 inline-block">
+            <i class="bi bi-arrow-left"></i> Voltar para a lista de prompts
+        </a>
+    </div>
     {% endif %}
 </div>
+
+<style>
+.btn-secondary {
+    @apply inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-lg transition-colors;
+}
+.btn-primary {
+    @apply inline-flex items-center gap-2 bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold py-2 px-4 rounded-lg transition-colors;
+}
+.btn-danger {
+    @apply inline-flex items-center gap-2 bg-red-100 hover:bg-red-200 text-red-700 font-semibold py-2 px-4 rounded-lg transition-colors;
+}
+.btn-success {
+    @apply inline-flex items-center gap-2 bg-green-100 hover:bg-green-200 text-green-700 font-semibold py-2 px-4 rounded-lg transition-colors;
+}
+</style>
+
+<script>
+function exportPrompt() {
+    if (!document.querySelector('.bg-white')) {
+        return;
+    }
+    
+    const promptData = {
+        project_name: "{{ prompt.project_name if prompt else '' }}",
+        project_description: "{{ prompt.project_description if prompt else '' }}",
+        category: "{{ prompt.category if prompt else '' }}",
+        {% if prompt and prompt.category == 'texto' %}
+        prompt: "{{ prompt.prompt or '' }}",
+        parameters: "{{ prompt.parameters or '' }}"
+        {% elif prompt and prompt.category == 'imagem' %}
+        positive_prompt: "{{ prompt.positive_prompt or '' }}",
+        negative_prompt: "{{ prompt.negative_prompt or '' }}",
+        parameters: "{{ prompt.parameters or '' }}"
+        {% endif %}
+    };
+
+    const blob = new Blob([JSON.stringify(promptData, null, 2)], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `prompt-{{ prompt.project_name if prompt else 'unknown' }}.json`;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+}
+</script>
 {% endblock %}

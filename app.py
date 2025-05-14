@@ -300,6 +300,54 @@ Este prompt é projetado para configurar um agente de IA como consultor estraté
         flash('Erro ao exportar prompt.', 'error')
         return redirect(url_for('view_prompt', id=id))
 
+@app.route('/prompt/<string:id>/edit', methods=['GET', 'POST'])
+def edit_prompt(id):
+    prompt = Prompt.query.get_or_404(uuid.UUID(id))
+    if prompt.category == 'imagem':
+        form = ImagePromptForm(obj=prompt)
+        # Corrigir campo de múltipla seleção
+        if request.method == 'GET' and prompt.post_processing:
+            if isinstance(prompt.post_processing, str):
+                # Remove colchetes e aspas se vier como string
+                import ast
+                try:
+                    form.post_processing.data = ast.literal_eval(prompt.post_processing)
+                except Exception:
+                    form.post_processing.data = []
+            else:
+                form.post_processing.data = prompt.post_processing
+        if form.validate_on_submit():
+            prompt.project_name = form.project_name.data
+            prompt.positive_prompt = form.positive_prompt.data
+            prompt.negative_prompt = form.negative_prompt.data
+            prompt.style = form.style.data
+            prompt.material = form.material.data
+            prompt.surface_texture = form.surface_texture.data
+            prompt.lighting_type = form.lighting_type.data
+            prompt.lighting_intensity = form.lighting_intensity.data
+            prompt.lighting_direction = form.lighting_direction.data
+            prompt.primary_color = form.primary_color.data
+            prompt.post_processing = str(form.post_processing.data)
+            db.session.commit()
+            flash('Prompt de imagem atualizado com sucesso!', 'success')
+            return redirect(url_for('view_prompt', id=id))
+        return render_template('criar_imagem.html', form=form, editar=True)
+    else:
+        form = PromptForm(obj=prompt)
+        if form.validate_on_submit():
+            prompt.project_name = form.project_name.data
+            prompt.project_description = form.project_description.data
+            prompt.project_objectives = form.project_objectives.data
+            prompt.language = form.language.data
+            prompt.temperature = form.temperature.data
+            prompt.tone = form.tone.data
+            prompt.persona = form.persona.data
+            prompt.protocols = form.protocols.data
+            db.session.commit()
+            flash('Prompt de texto atualizado com sucesso!', 'success')
+            return redirect(url_for('view_prompt', id=id))
+        return render_template('criar_texto.html', form=form, editar=True)
+
 @app.context_processor
 def inject_theme():
     return dict(theme='dark')

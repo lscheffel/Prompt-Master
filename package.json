@@ -1,33 +1,33 @@
 {
-  "name": "promot-master",
+  "name": "prompt-master",
   "version": "1.0.0",
-  "description": "Projeto inicial otimizado",
+  "description": "Gerador e formatador de prompts para agentes de IA",
   "main": "src/main.js",
+  "type": "commonjs",
   "scripts": {
-    "start": "vite",
-    "build": "vite build",
-    "test": "jest"
+    "build:css": "powershell -Command \"New-Item -ItemType Directory -Force -Path static/css\" && npx tailwindcss -i ./src/style.css -o ./static/css/style.css --minify",
+    "watch:css": "powershell -Command \"New-Item -ItemType Directory -Force -Path static/css\" && npx tailwindcss -i ./src/style.css -o ./static/css/style.css --watch",
+    "build:js": "powershell -Command \"New-Item -ItemType Directory -Force -Path static/js; Copy-Item -Path src/main.js -Destination static/js/main.js -Force\"",
+    "clean": "powershell -Command \"Remove-Item -Recurse -Force node_modules, package-lock.json -ErrorAction SilentlyContinue\" && npm cache clean --force",
+    "check:tailwind": "node scripts/check-tailwind.js",
+    "update:browserslist": "npx update-browserslist-db@latest"
   },
   "devDependencies": {
-    "@eslint/js": "^9.26.0",
-    "eslint": "^8.57.1",
-    "eslint-plugin-react": "^7.37.5",
-    "globals": "^16.1.0",
-    "jest": "^29.7.0",
-    "prettier": "^2.8.8",
-    "vite": "^4.5.14"
-  },
-  "jest": {
-  "testEnvironment": "jsdom"
+    "@tailwindcss/typography": "^0.5.10",
+    "tailwindcss": "^3.4.1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lscheffel/Prompt-Master.git"
   },
-  "keywords": [],
+  "keywords": [
+    "prompt",
+    "ai",
+    "flask",
+    "tailwind"
+  ],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/lscheffel/Prompt-Master/issues"
   },

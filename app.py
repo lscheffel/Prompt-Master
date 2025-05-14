@@ -122,6 +122,43 @@ def delete_prompt(id):
         flash('Erro ao deletar prompt.', 'error')
     return redirect(url_for('list_prompts'))
 
+@app.route('/prompt/<string:id>/export', methods=['POST'])
+def export_prompt(id):
+    try:
+        prompt = Prompt.query.get_or_404(uuid.UUID(id))
+        filename = f"{prompt.project_name}-{prompt.created_at.strftime('%Y%m%d%H%M%S')}.md"
+        content = f"""# {prompt.project_name}
+
+**Versão**: 1.0
+
+## Contexto
+
+Este prompt é projetado para configurar um agente de IA como consultor estratégico, fornecendo instruções precisas e profissionais para maximizar a qualidade das respostas.
+
+## Descrição
+
+{prompt.project_description}
+
+## Objetivos
+
+{prompt.project_objectives}
+"""
+        filepath = os.path.join('static', 'exports', filename)
+        os.makedirs(os.path.dirname(filepath), exist_ok=True)
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        logger.info(f'Prompt exportado para {filepath}')
+        flash('Prompt exportado com sucesso!', 'success')
+        return redirect(url_for('view_prompt', id=id))
+    except Exception as e:
+        logger.error(f'Erro ao exportar prompt {id}: {str(e)}')
+        flash('Erro ao exportar prompt.', 'error')
+        return redirect(url_for('view_prompt', id=id))
+
+@app.context_processor
+def inject_theme():
+    return dict(theme='dark')
+
 # Inicialização do banco
 with app.app_context():
     db.create_all()

@@ -22,3 +22,20 @@ function downloadMarkdown() {
         alert('Erro ao baixar o prompt.');
     }
 }
+
+document.getElementById('theme-toggle').addEventListener('click', () => {
+    const body = document.body;
+    const themeIcon = document.getElementById('theme-icon');
+
+    if (body.classList.contains('bg-gray-900')) {
+        body.classList.remove('bg-gray-900', 'text-gray-100');
+        body.classList.add('bg-white', 'text-gray-900');
+        themeIcon.classList.remove('bi-lightbulb-fill');
+        themeIcon.classList.add('bi-lightbulb');
+    } else {
+        body.classList.remove('bg-white', 'text-gray-900');
+        body.classList.add('bg-gray-900', 'text-gray-100');
+        themeIcon.classList.remove('bi-lightbulb');
+        themeIcon.classList.add('bi-lightbulb-fill');
+    }
+});

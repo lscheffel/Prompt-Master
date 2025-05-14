@@ -1,61 +1,41 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizar Prompt</title>
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-</head>
-<body class="bg-gray-100">
-    <div class="container mx-auto p-6">
-        <h1 class="text-3xl font-bold mb-6">{{ prompt.project_name }}</h1>
-        <div class="bg-white p-6 rounded shadow">
-            <h2 class="text-xl font-semibold mb-4">Detalhes do Prompt</h2>
-            <p><strong>Descrição:</strong> {{ prompt.project_description }}</p>
-            <p><strong>Objetivos:</strong> {{ prompt.project_objectives }}</p>
-            <p><strong>Linguagem:</strong> {{ prompt.language }}</p>
-            <p><strong>Temperatura:</strong> {{ prompt.temperature }}</p>
-            <p><strong>Tom:</strong> {{ prompt.tone }}</p>
-            <p><strong>Persona:</strong> {{ prompt.persona }}</p>
-            <p><strong>Protocolos:</strong> {{ prompt.protocols }}</p>
-            <p><strong>Criado em:</strong> {{ prompt.created_at.strftime('%d/%m/%Y %H:%M') }}</p>
-            <h2 class="text-xl font-semibold mb-4 mt-6">Prompt Gerado (Markdown)</h2>
-            <pre id="prompt-markdown" class="bg-gray-800 text-white p-4 rounded"><code>
+{% extends "base.html" %}
+{% block title %}Visualizar Prompt{% endblock %}
+{% block content %}
+<div class="bg-white text-gray-900 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold mb-6">{{ prompt.project_name }}</h1>
+    <div class="space-y-4">
+        <h2 class="text-xl font-semibold">Detalhes do Prompt</h2>
+        <p><strong>Descrição:</strong> {{ prompt.project_description }}</p>
+        <p><strong>Objetivos:</strong> {{ prompt.project_objectives }}</p>
+        <p><strong>Linguagem:</strong> {{ prompt.language }}</p>
+        <p><strong>Temperatura:</strong> {{ prompt.temperature }}</p>
+        <p><strong>Tom:</strong> {{ prompt.tone }}</p>
+        <p><strong>Persona:</strong> {{ prompt.persona }}</p>
+        <p><strong>Protocolos:</strong> {{ prompt.protocols }}</p>
+        <p><strong>Criado em:</strong> {{ prompt.created_at.strftime('%d/%m/%Y %H:%M') }}</p>
+        <h2 class="text-xl font-semibold mt-6">Prompt Gerado (Markdown)</h2>
+        <pre id="prompt-markdown" class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto whitespace-pre-wrap"><code>
 # {{ prompt.project_name }}
 
 **Versão**: 1.0
 
 ## Contexto
+
 Este prompt é projetado para configurar um agente de IA como consultor estratégico, fornecendo instruções precisas e profissionais para maximizar a qualidade das respostas.
 
 ## Descrição
+
 {{ prompt.project_description }}
 
 ## Objetivos
+
 {{ prompt.project_objectives }}
-
-## Parâmetros de Configuração
-- **Linguagem**: {{ prompt.language }}
-- **Temperatura**: {{ prompt.temperature }}
-- **Tom**: {{ prompt.tone }}
-
-## Persona
-{% for item in prompt.persona.split('•') if item.strip() %}
-1. {{ item.strip() }}
-{% endfor %}
-
-## Protocolos
-{% for item in prompt.protocols.split('•') if item.strip() %}
-1. {{ item.strip() }}
-{% endfor %}
-
-## Instruções de Uso
-Copie e cole este prompt em ferramentas como Grok, ChatGPT ou Gemini. Ajuste a temperatura conforme necessário para equilibrar precisão e criatividade. Certifique-se de fornecer contexto adicional, se aplicável.
-            </code></pre>
-            <button onclick="downloadMarkdown()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Baixar como Markdown</button>
-        </div>
-        <a href="{{ url_for('list_prompts') }}" class="mt-4 inline-block text-blue-500 hover:underline">Voltar</a>
+        </code></pre>
+        <form method="POST" action="{{ url_for('export_prompt', id=prompt.id) }}">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Exportar para Markdown
+            </button>
+        </form>
     </div>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-</body>
-</html>
+</div>
+{% endblock %}

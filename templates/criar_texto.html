@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Criar Prompt{% endblock %}
+{% block content %}
+<div class="bg-white text-gray-900 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold mb-6">Criar Novo Prompt</h1>
+    <form method="POST" class="space-y-6">
+        {{ form.hidden_tag() }}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">{{ form.project_name.label }}</label>
+            {{ form.project_name(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">{{ form.project_description.label }}</label>
+            {{ form.project_description(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">{{ form.project_objectives.label }}</label>
+            {{ form.project_objectives(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">{{ form.language.label }}</OZ label>
+            {{ form.language(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">{{ form.temperature.label }}</label>
+            {{ form.temperature(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">{{ form.tone.label }}</label>
+            {{ form.tone(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">{{ form.persona.label }}</label>
+            {{ form.persona(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">{{ form.protocols.label }}</label>
+            {{ form.protocols(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+        </div>
+        {{ form.submit(class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500") }}
+    </form>
+    <a href="{{ url_for('list_prompts') }}" class="mt-4 inline-block text-blue-400 hover:text-blue-300">Ver Prompts</a>
+</div>
+{% endblock %}

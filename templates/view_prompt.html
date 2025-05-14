@@ -1,10 +1,12 @@
 {% extends "base.html" %}
-{% block title %}Visualizar Prompt{% endblock %}
+{% block title %}Detalhes do Prompt{% endblock %}
+
 {% block content %}
-<div class="bg-white text-gray-900 rounded-lg shadow-md p-6">
-    <h1 class="text-3xl font-bold mb-6">{{ prompt.project_name }}</h1>
-    <div class="space-y-4">
-        <h2 class="text-xl font-semibold">Detalhes do Prompt</h2>
+<div class="bg-blue-50 text-gray-900 rounded-lg shadow-md p-6">
+    <h1 class="text-2xl font-bold mb-4">{{ prompt.project_name }}</h1>
+    <p class="mb-2 text-sm text-gray-500">Criado em: {{ prompt.created_at.strftime('%d/%m/%Y %H:%M') }}</p>
+    
+    {% if prompt.category == 'texto' %}
         <p><strong>Descrição:</strong> {{ prompt.project_description }}</p>
         <p><strong>Objetivos:</strong> {{ prompt.project_objectives }}</p>
         <p><strong>Linguagem:</strong> {{ prompt.language }}</p>
@@ -12,30 +14,17 @@
         <p><strong>Tom:</strong> {{ prompt.tone }}</p>
         <p><strong>Persona:</strong> {{ prompt.persona }}</p>
         <p><strong>Protocolos:</strong> {{ prompt.protocols }}</p>
-        <p><strong>Criado em:</strong> {{ prompt.created_at.strftime('%d/%m/%Y %H:%M') }}</p>
-        <h2 class="text-xl font-semibold mt-6">Prompt Gerado (Markdown)</h2>
-        <pre id="prompt-markdown" class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto whitespace-pre-wrap"><code>
-# {{ prompt.project_name }}
-
-**Versão**: 1.0
-
-## Contexto
-
-Este prompt é projetado para configurar um agente de IA como consultor estratégico, fornecendo instruções precisas e profissionais para maximizar a qualidade das respostas.
-
-## Descrição
-
-{{ prompt.project_description }}
-
-## Objetivos
-
-{{ prompt.project_objectives }}
-        </code></pre>
-        <form method="POST" action="{{ url_for('export_prompt', id=prompt.id) }}">
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Exportar para Markdown
-            </button>
-        </form>
-    </div>
+    {% elif prompt.category == 'imagem' %}
+        <p><strong>Prompt Positivo:</strong> {{ prompt.positive_prompt }}</p>
+        <p><strong>Prompt Negativo:</strong> {{ prompt.negative_prompt }}</p>
+        <p><strong>Estilo:</strong> {{ prompt.style }}</p>
+        <p><strong>Material:</strong> {{ prompt.material }}</p>
+        <p><strong>Textura da Superfície:</strong> {{ prompt.surface_texture }}</p>
+        <p><strong>Tipo de Iluminação:</strong> {{ prompt.lighting_type }}</p>
+        <p><strong>Intensidade da Luz:</strong> {{ prompt.lighting_intensity }}</p>
+        <p><strong>Direção da Luz:</strong> {{ prompt.lighting_direction }}</p>
+        <p><strong>Cor Primária:</strong> {{ prompt.primary_color }}</p>
+        <p><strong>Pós-processamento:</strong> {{ prompt.post_processing }}</p>
+    {% endif %}
 </div>
 {% endblock %}

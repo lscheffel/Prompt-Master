@@ -37,3 +37,23 @@ body.bg-gray-900 #theme-icon {
 body.bg-white #theme-icon {
     color: yellow;
 }
+
+/* Form backgrounds */
+.bg-white {
+    background-color: #f0f7ff !important; /* Light blue background */
+}
+
+/* Darker text for better contrast on light blue */
+.text-gray-900 {
+    color: #2c3e50 !important;
+}
+
+/* Input fields styling */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    background-color: white !important;
+    border: 1px solid #e2e8f0 !important;
+}

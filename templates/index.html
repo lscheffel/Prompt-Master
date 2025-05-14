@@ -1,44 +1,55 @@
 {% extends "base.html" %}
-{% block title %}Criar Prompt{% endblock %}
+{% block title %}Prompt Master - Portal{% endblock %}
 {% block content %}
 <div class="bg-white text-gray-900 rounded-lg shadow-md p-6">
-    <h1 class="text-3xl font-bold mb-6">Criar Novo Prompt</h1>
-    <form method="POST" class="space-y-6">
-        {{ form.hidden_tag() }}
-        <div>
-            <label class="block text-sm font-medium text-gray-700">{{ form.project_name.label }}</label>
-            {{ form.project_name(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">{{ form.project_description.label }}</label>
-            {{ form.project_description(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">{{ form.project_objectives.label }}</label>
-            {{ form.project_objectives(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">{{ form.language.label }}</OZ label>
-            {{ form.language(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">{{ form.temperature.label }}</label>
-            {{ form.temperature(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">{{ form.tone.label }}</label>
-            {{ form.tone(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">{{ form.persona.label }}</label>
-            {{ form.persona(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">{{ form.protocols.label }}</label>
-            {{ form.protocols(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
-        </div>
-        {{ form.submit(class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500") }}
-    </form>
-    <a href="{{ url_for('list_prompts') }}" class="mt-4 inline-block text-blue-400 hover:text-blue-300">Ver Prompts</a>
+    <h1 class="text-3xl font-bold mb-6">Prompt Master</h1>
+    <p class="text-gray-600 mb-6">Selecione o tipo de prompt que deseja criar:</p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card Texto -->
+        <a href="{{ url_for('criar_texto') }}" class="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <div class="flex items-center mb-4">
+                <i class="bi bi-file-text text-2xl text-blue-600 mr-3"></i>
+                <h2 class="text-xl font-semibold">Texto</h2>
+            </div>
+            <p class="text-gray-600">Crie prompts para geração de textos, artigos e conteúdo escrito.</p>
+        </a>
+
+        <!-- Card Imagem -->
+        <a href="{{ url_for('criar_imagem') }}" class="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <div class="flex items-center mb-4">
+                <i class="bi bi-image text-2xl text-green-600 mr-3"></i>
+                <h2 class="text-xl font-semibold">Imagem</h2>
+            </div>
+            <p class="text-gray-600">Gere prompts para criação de imagens e arte digital.</p>
+        </a>
+
+        <!-- Card Áudio -->
+        <a href="{{ url_for('criar_audio') }}" class="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <div class="flex items-center mb-4">
+                <i class="bi bi-music-note-beamed text-2xl text-purple-600 mr-3"></i>
+                <h2 class="text-xl font-semibold">Áudio</h2>
+            </div>
+            <p class="text-gray-600">Crie prompts para geração de áudio e música.</p>
+        </a>
+
+        <!-- Card Código -->
+        <a href="{{ url_for('criar_codigo') }}" class="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <div class="flex items-center mb-4">
+                <i class="bi bi-code-square text-2xl text-red-600 mr-3"></i>
+                <h2 class="text-xl font-semibold">Código</h2>
+            </div>
+            <p class="text-gray-600">Desenvolva prompts para geração de código e programação.</p>
+        </a>
+
+        <!-- Card Vídeo -->
+        <a href="{{ url_for('criar_video') }}" class="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <div class="flex items-center mb-4">
+                <i class="bi bi-film text-2xl text-yellow-600 mr-3"></i>
+                <h2 class="text-xl font-semibold">Vídeo</h2>
+            </div>
+            <p class="text-gray-600">Crie prompts para geração de vídeos e animações.</p>
+        </a>
+    </div>
 </div>
 {% endblock %}

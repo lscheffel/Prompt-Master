@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Criar Prompt de Imagem{% endblock %}
+{% block content %}
+<div class="bg-blue-50 text-gray-900 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold mb-6">Criar Prompt de Imagem</h1>
+    <form method="POST" class="space-y-6">
+        {{ form.hidden_tag() }}
+        
+        <!-- Nome do Projeto -->
+        <div>
+            <label class="block text-sm font-medium text-gray-700">{{ form.project_name.label }}</label>
+            {{ form.project_name(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+        </div>
+
+        <!-- Prompts -->
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">{{ form.positive_prompt.label }}</label>
+                {{ form.positive_prompt(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500", rows="4") }}
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">{{ form.negative_prompt.label }}</label>
+                {{ form.negative_prompt(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500", rows="4") }}
+            </div>
+        </div>
+
+        <!-- Style and Material -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">{{ form.style.label }}</label>
+                {{ form.style(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">{{ form.material.label }}</label>
+                {{ form.material(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">{{ form.surface_texture.label }}</label>
+                {{ form.surface_texture(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+            </div>
+        </div>
+
+        <!-- Lighting -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">{{ form.lighting_type.label }}</label>
+                {{ form.lighting_type(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">{{ form.lighting_intensity.label }}</label>
+                {{ form.lighting_intensity(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">{{ form.lighting_direction.label }}</label>
+                {{ form.lighting_direction(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+            </div>
+        </div>
+
+        <!-- Colors and Effects -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">{{ form.primary_color.label }}</label>
+                {{ form.primary_color(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">{{ form.post_processing.label }}</label>
+                {{ form.post_processing(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="flex justify-end">
+            {{ form.submit(class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded") }}
+        </div>
+    </form>
+</div>
+{% endblock %}

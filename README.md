@@ -1,67 +1,170 @@
-# Readme.MD Template
+# Prompt Master 🤖
 
-> Gerar descrições de repositórios de forma padronizada e consistente para qualquer projeto
+> Gerador e formatador de prompts para agentes de IA - Uma ferramenta completa para criar prompts estruturados e profissionais
 
-## Manifesto
+[![Python Version](https://img.shields.io/badge/python-3.8+-blue)](https://www.python.org/)
+[![Flask Version](https://img.shields.io/badge/flask-3.0+-red)](https://flask.palletsprojects.com/)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-Este projeto oferece um template estruturado em JSON para gerar arquivos HTML de README ultra-detalhados para repositórios. Utilizando Bootstrap 5.3.0 e ícones, o template garante uma apresentação profissional, responsiva e interativa. A missão é padronizar a documentação de projetos open-source, facilitando a compreensão e contribuição da comunidade.
+## 📋 Manifesto
 
-## Arquivos
+**Prompt Master** é uma aplicação web desenvolvida para revolucionar a forma como criamos e gerenciamos prompts para agentes de IA. Nossa missão é fornecer uma ferramenta intuitiva, poderosa e acessível que permite aos usuários criar prompts estruturados, profissionais e otimizados para diferentes tipos de conteúdo e aplicações.
 
-### ultra_readme_generator.json
-Arquivo JSON contendo o template completo com estrutura, estilos e conteúdo base para gerar o README HTML.
+### 🎯 Nossa Visão
+- **Inovação**: Interfaces modernas e tecnologia de ponta
+- **Qualidade**: Prompts estruturados e profissionais
+- **Acessibilidade**: Ferramenta intuitiva para todos os usuários
 
-### readme_md_template_ultra_readme.html
-Arquivo HTML gerado a partir do template, contendo a descrição completa do repositório.
+## 🚀 Funcionalidades
 
-## Análise
+### 📝 Criação de Prompts
+- **Texto**: Prompts de texto com configurações avançadas (linguagem, temperatura, tom, persona)
+- **Imagem**: Prompts detalhados para geração de imagens (estilo, material, iluminação, cores)
+- **Áudio**: Configurações para prompts de áudio
+- **Código**: Prompts especializados para desenvolvimento
+- **Vídeo**: Configurações completas para conteúdo audiovisual
+- **Apresentações**: Estrutura para slides e apresentações
+- **Infográficos**: Visualizações de dados e informações
+- **Animações**: Configurações para animações digitais
+- **Websites**: Prompts para desenvolvimento web
+- **Dados**: Análise e visualização de dados
+- **Tradução**: Configurações para tradução de textos
+- **Resumos**: Estruturação de resumos inteligentes
+- **Marketing**: Campanhas e estratégias de marketing
+- **Educação**: Conteúdo educacional estruturado
 
-O projeto utiliza uma arquitetura baseada em JSON para definir templates reutilizáveis. As tecnologias incluem HTML5, CSS3 com Bootstrap, e JavaScript para interatividade. O template é modular, permitindo customização fácil através da edição do JSON.
+### 🛠️ Gerenciamento
+- **CRUD Completo**: Criar, visualizar, editar e excluir prompts
+- **Exportação**: Exportar prompts em formato Markdown
+- **Organização**: Categorização e busca de prompts
+- **Banco de Dados**: Persistência com SQLite
 
-## Funções
+## 🏗️ Arquitetura
 
-### Geração de README HTML
-Converte o template JSON em um arquivo HTML completo com seções estruturadas.
+### Tecnologias Principais
+- **Backend**: Flask 3.0.3, SQLAlchemy, WTForms
+- **Frontend**: Bootstrap 5, Tailwind CSS, JavaScript
+- **Banco de Dados**: SQLite
+- **Templates**: Jinja2
 
-### Customização Fácil
-Permite editar informações do projeto diretamente no JSON.
+### Estrutura do Projeto
+```
+prompt-master/
+├── app.py                 # Aplicação principal Flask
+├── forms.py              # Definições dos formulários WTForms
+├── requirements.txt      # Dependências Python
+├── promptmaster.db       # Banco de dados SQLite
+├── static/               # Arquivos estáticos
+│   ├── css/
+│   └── js/
+├── templates/            # Templates HTML
+│   ├── base.html
+│   ├── index.html
+│   └── criar_*.html
+└── migrations/           # Migrações do banco de dados
+```
 
-### Design Responsivo
-Utiliza Bootstrap para garantir compatibilidade em todos os dispositivos.
+## 📦 Instalação
 
-## Versionamento
+### Pré-requisitos
+- Python 3.8 ou superior
+- Git
 
-Versão inicial 1.0.0 - Criado em 28/09/2025. Política de versionamento semântico.
+### Passos de Instalação
 
-## Próximos Passos
+1. **Clone o repositório**
+   ```bash
+   git clone https://github.com/lscheffel/Prompt-Master.git
+   cd Prompt-Master
+   ```
 
-- Adicionar suporte para múltiplos idiomas
-- Integração com APIs do GitHub para dados automáticos
-- Gerador automático de conteúdo baseado no código
+2. **Crie um ambiente virtual**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Linux/Mac
+   # ou
+   venv\Scripts\activate     # Windows
+   ```
 
-## FAQ
+3. **Instale as dependências**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-**Como usar o template?**
-Edite o JSON com as informações do seu projeto e gere o HTML.
+4. **Execute a aplicação**
+   ```bash
+   python app.py
+   ```
 
-**É gratuito?**
-Sim, é open-source.
+5. **Acesse no navegador**
+   ```
+   http://localhost:5000
+   ```
 
-**Posso modificar o design?**
-Sim, o CSS é customizável.
+## 🎨 Interface
 
-## Sugestões
+A aplicação possui uma interface moderna e responsiva com:
 
-Mantenha o JSON organizado. Use ferramentas de validação JSON. Teste o HTML em diferentes navegadores.
+- **Design System**: Bootstrap 5 com temas personalizados
+- **Glassmorphism**: Efeitos visuais modernos
+- **Responsividade**: Perfeito em desktop, tablet e mobile
+- **Acessibilidade**: Suporte completo a leitores de tela
+- **Interatividade**: Elementos dinâmicos e animações
 
-## Contribua com o Projeto
+## 📊 Uso
 
-Faça fork do repositório e envie pull requests. [Ver no GitHub](https://github.com/seu-usuario/seu-repo)
+### Criando um Prompt de Texto
+1. Acesse "Criar Texto" no menu principal
+2. Preencha a descrição e objetivos do projeto
+3. Configure os parâmetros (linguagem, temperatura, tom, etc.)
+4. Clique em "Gerar Prompt"
 
-[![Stars](https://img.shields.io/github/stars/seu-usuario/seu-repo)](https://github.com/seu-usuario/seu-repo)
-[![Forks](https://img.shields.io/github/forks/seu-usuario/seu-repo)](https://github.com/seu-usuario/seu-repo)
-[![Issues](https://img.shields.io/github/issues/seu-usuario/seu-repo)](https://github.com/seu-usuario/seu-repo)
+### Gerenciando Prompts
+1. Vá para a seção "Prompts" para ver todos os prompts criados
+2. Use as opções de editar, visualizar ou excluir
+3. Exporte prompts importantes em formato Markdown
+
+## 🤝 Contribuição
+
+Contribuições são bem-vindas! Para contribuir:
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+### Tipos de Contribuição
+- 🐛 **Bug fixes**
+- ✨ **Novas funcionalidades**
+- 📚 **Documentação**
+- 🎨 **UI/UX improvements**
+- 🧪 **Testes**
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 🙏 Agradecimentos
+
+- **Flask**: Framework web incrível
+- **Bootstrap**: Framework CSS poderoso
+- **SQLAlchemy**: ORM excepcional
+- **Comunidade Open Source**: Por tornar tudo isso possível
+
+## 📞 Contato
+
+- **Autor**: Leandro Scheffel
+- **GitHub**: [@lscheffel](https://github.com/lscheffel)
+- **Projeto**: [Prompt Master](https://github.com/lscheffel/Prompt-Master)
 
 ---
 
-© 2025 Readme.MD Template
+<div align="center">
+  <p><strong>Feito com ❤️ pela comunidade open source</strong></p>
+  <p>
+    <a href="#prompt-master-">Voltar ao topo</a> •
+    <a href="https://github.com/lscheffel/Prompt-Master/issues">Reportar Bug</a> •
+    <a href="https://github.com/lscheffel/Prompt-Master/pulls">Contribuir</a>
+  </p>
+</div>

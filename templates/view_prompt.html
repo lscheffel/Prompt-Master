@@ -2,156 +2,460 @@
 {% block title %}Detalhes do Prompt{% endblock %}
 
 {% block content %}
-<div class="bg-gradient-to-br from-blue-50 to-blue-100 text-gray-900 rounded-xl shadow-lg p-8">
-    {% if prompt %}
-    <!-- Botões de Ação -->
-    <div class="flex flex-wrap gap-4 mb-8">
-        <a href="{{ url_for('list_prompts') }}" class="btn-secondary">
-            <i class="bi bi-arrow-left"></i> Voltar
-        </a>
-        <a href="{{ url_for('edit_prompt', id=prompt.id) }}" class="btn-primary">
-            <i class="bi bi-pencil"></i> Editar
-        </a>
-        <form action="{{ url_for('delete_prompt_by_id', id=prompt.id) }}" method="POST" class="inline">
-            <button type="submit" class="btn-danger"
-                onclick="return confirm('Tem certeza que deseja excluir este prompt?')">
-                <i class="bi bi-trash"></i> Excluir
+<div class="card shadow-lg border-0 rounded-4 mb-5">
+    <div class="card-body p-5">
+        {% if prompt %}
+        <!-- Botões de Ação -->
+        <div class="d-flex flex-wrap gap-3 mb-5">
+            <a href="{{ url_for('list_prompts') }}" class="btn btn-outline-secondary rounded-pill">
+                <i class="bi bi-arrow-left me-2"></i>Voltar
+            </a>
+            <a href="{{ url_for('edit_prompt', id=prompt.id) }}" class="btn btn-primary rounded-pill">
+                <i class="bi bi-pencil me-2"></i>Editar
+            </a>
+            <form action="{{ url_for('delete_prompt_by_id', id=prompt.id) }}" method="POST" class="d-inline">
+                <button type="submit" class="btn btn-danger rounded-pill"
+                    onclick="return confirm('Tem certeza que deseja excluir este prompt?')">
+                    <i class="bi bi-trash me-2"></i>Excluir
+                </button>
+            </form>
+            <button onclick="exportPrompt(); return false;" class="btn btn-success rounded-pill">
+                <i class="bi bi-download me-2"></i>Exportar JSON
             </button>
-        </form>
-        <button onclick="exportPrompt()" class="btn-success">
-            <i class="bi bi-download"></i> Exportar
-        </button>
-    </div>
-
-    <!-- Conteúdo do Prompt -->
-    <div class="bg-white rounded-xl shadow-md p-6">
-        <div class="mb-6">
-            <h1 class="text-2xl font-bold text-blue-900 mb-2">{{ prompt.project_name or 'Sem nome' }}</h1>
-            <p class="text-gray-600">{{ prompt.project_description or 'Sem descrição' }}</p>
-            <p class="text-sm text-gray-500 mt-2">Criado em: {{ prompt.created_at.strftime('%d/%m/%Y') if prompt.created_at else 'Data não disponível' }}</p>
+            <a href="{{ url_for('export_prompt', id=prompt.id) }}" class="btn btn-info rounded-pill">
+                <i class="bi bi-file-earmark-markdown me-2"></i>Exportar Markdown
+            </a>
         </div>
 
-        {% if prompt.category == 'texto' %}
-        <div class="space-y-4">
-            <div>
-                <h2 class="text-lg font-semibold text-blue-800 mb-2">Objetivos</h2>
-                <div class="bg-gray-50 rounded-lg p-4">
-                    <p class="text-gray-700 whitespace-pre-wrap">{{ prompt.project_objectives or 'Sem objetivos' }}</p>
+        <!-- Conteúdo do Prompt -->
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-{% if prompt.category == 'texto' %}primary{% elif prompt.category == 'imagem' %}success{% elif prompt.category == 'audio' %}warning{% elif prompt.category == 'codigo' %}info{% elif prompt.category == 'video' %}danger{% else %}secondary{% endif %} text-white">
+                <div class="d-flex align-items-center">
+                    {% if prompt.category == 'texto' %}<i class="bi bi-file-text me-2"></i>
+                    {% elif prompt.category == 'imagem' %}<i class="bi bi-image me-2"></i>
+                    {% elif prompt.category == 'audio' %}<i class="bi bi-music-note-beamed me-2"></i>
+                    {% elif prompt.category == 'codigo' %}<i class="bi bi-code-square me-2"></i>
+                    {% elif prompt.category == 'video' %}<i class="bi bi-film me-2"></i>
+                    {% elif prompt.category == 'documento' %}<i class="bi bi-file-earmark-text me-2"></i>
+                    {% elif prompt.category == 'apresentacao' %}<i class="bi bi-easel me-2"></i>
+                    {% elif prompt.category == 'infografico' %}<i class="bi bi-bar-chart me-2"></i>
+                    {% elif prompt.category == 'animacao' %}<i class="bi bi-play-circle me-2"></i>
+                    {% elif prompt.category == 'website' %}<i class="bi bi-globe me-2"></i>
+                    {% elif prompt.category == 'dados' %}<i class="bi bi-graph-up me-2"></i>
+                    {% elif prompt.category == 'traducao' %}<i class="bi bi-translate me-2"></i>
+                    {% elif prompt.category == 'resumo' %}<i class="bi bi-file-minus me-2"></i>
+                    {% elif prompt.category == 'marketing' %}<i class="bi bi-megaphone me-2"></i>
+                    {% elif prompt.category == 'educacao' %}<i class="bi bi-mortarboard me-2"></i>
+                    {% else %}<i class="bi bi-star me-2"></i>{% endif %}
+                    <h1 class="h3 mb-0">{{ prompt.project_name or 'Sem nome' }}</h1>
+                    <span class="badge bg-light text-dark ms-3">{{ prompt.category.title() }}</span>
                 </div>
             </div>
-            <div>
-                <h2 class="text-lg font-semibold text-blue-800 mb-2">Linguagem</h2>
-                <div class="bg-gray-50 rounded-lg p-4">
-                    <p class="text-gray-700">{{ prompt.language or 'Não especificada' }}</p>
+            <div class="card-body">
+                <div class="mb-4">
+                    <h5 class="text-muted mb-2">Descrição do Projeto</h5>
+                    <p class="lead">{{ prompt.project_description or 'Sem descrição' }}</p>
+                    <small class="text-muted">
+                        <i class="bi bi-calendar me-1"></i>Criado em: {{ prompt.created_at.strftime('%d/%m/%Y %H:%M') if prompt.created_at else 'Data não disponível' }}
+                    </small>
                 </div>
-            </div>
-            <div>
-                <h2 class="text-lg font-semibold text-blue-800 mb-2">Temperatura</h2>
-                <div class="bg-gray-50 rounded-lg p-4">
-                    <p class="text-gray-700">{{ prompt.temperature or 'Não especificada' }}</p>
+
+                {% if prompt.category == 'texto' %}
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card border-primary">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="bi bi-target me-2"></i>Objetivos</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.project_objectives or 'Sem objetivos' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-primary">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="bi bi-code me-2"></i>Linguagem</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.language or 'Não especificada' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-primary">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="bi bi-thermometer me-2"></i>Temperatura</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.temperature or 'Não especificada' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-primary">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="bi bi-chat-dots me-2"></i>Tom</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.tone or 'Não especificado' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-primary">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="bi bi-person me-2"></i>Persona</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.persona or 'Não especificada' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-primary">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="bi bi-list-check me-2"></i>Protocolos</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.protocols or 'Sem protocolos' }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <h2 class="text-lg font-semibold text-blue-800 mb-2">Tom</h2>
-                <div class="bg-gray-50 rounded-lg p-4">
-                    <p class="text-gray-700">{{ prompt.tone or 'Não especificado' }}</p>
+                {% elif prompt.category == 'imagem' %}
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card border-success">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="bi bi-target me-2"></i>Objetivos</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.project_objectives or 'Sem objetivos' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-success">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="bi bi-plus-circle me-2"></i>Prompt Positivo</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.positive_prompt or 'Sem prompt positivo' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-success">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="bi bi-dash-circle me-2"></i>Prompt Negativo</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.negative_prompt or 'Sem prompt negativo' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-success">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="bi bi-palette me-2"></i>Estilo</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.style or 'Não especificado' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-success">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="bi bi-box me-2"></i>Material</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.material or 'Não especificado' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-success">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="bi bi-texture me-2"></i>Textura</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.surface_texture or 'Não especificada' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-success">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="bi bi-lightbulb me-2"></i>Iluminação</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.lighting_type or 'Não especificado' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-success">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="bi bi-brightness-high me-2"></i>Intensidade</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.lighting_intensity or 'Não especificada' }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <h2 class="text-lg font-semibold text-blue-800 mb-2">Persona</h2>
-                <div class="bg-gray-50 rounded-lg p-4">
-                    <p class="text-gray-700 whitespace-pre-wrap">{{ prompt.persona or 'Não especificada' }}</p>
+                {% elif prompt.category == 'audio' %}
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card border-warning">
+                            <div class="card-header bg-warning text-dark">
+                                <h5 class="mb-0"><i class="bi bi-target me-2"></i>Objetivos</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.project_objectives or 'Sem objetivos' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-warning">
+                            <div class="card-header bg-warning text-dark">
+                                <h5 class="mb-0"><i class="bi bi-clock me-2"></i>Duração</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.audio_duration or 'Não especificada' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-warning">
+                            <div class="card-header bg-warning text-dark">
+                                <h5 class="mb-0"><i class="bi bi-music-note me-2"></i>Gênero</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.audio_genre or 'Não especificado' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-warning">
+                            <div class="card-header bg-warning text-dark">
+                                <h5 class="mb-0"><i class="bi bi-cloud me-2"></i>Clima/Atmosfera</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.audio_mood or 'Não especificada' }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <h2 class="text-lg font-semibold text-blue-800 mb-2">Protocolos</h2>
-                <div class="bg-gray-50 rounded-lg p-4">
-                    <p class="text-gray-700 whitespace-pre-wrap">{{ prompt.protocols or 'Sem protocolos' }}</p>
+                {% elif prompt.category == 'codigo' %}
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card border-info">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="mb-0"><i class="bi bi-target me-2"></i>Objetivos</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.project_objectives or 'Sem objetivos' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-info">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="mb-0"><i class="bi bi-code me-2"></i>Linguagem</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.code_language or 'Não especificada' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-info">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="mb-0"><i class="bi bi-puzzle me-2"></i>Framework</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.code_framework or 'Não especificado' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-info">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="mb-0"><i class="bi bi-bar-chart me-2"></i>Complexidade</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.code_complexity or 'Não especificada' }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        {% elif prompt.category == 'imagem' %}
-        <div class="space-y-4">
-            <div>
-                <h2 class="text-lg font-semibold text-green-800 mb-2">Prompt Positivo</h2>
-                <div class="bg-gray-50 rounded-lg p-4">
-                    <p class="text-gray-700 whitespace-pre-wrap">{{ prompt.positive_prompt or 'Sem prompt positivo' }}</p>
+                {% elif prompt.category == 'video' %}
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card border-danger">
+                            <div class="card-header bg-danger text-white">
+                                <h5 class="mb-0"><i class="bi bi-target me-2"></i>Objetivos</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.project_objectives or 'Sem objetivos' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-danger">
+                            <div class="card-header bg-danger text-white">
+                                <h5 class="mb-0"><i class="bi bi-clock me-2"></i>Duração</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.video_duration or 'Não especificada' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-danger">
+                            <div class="card-header bg-danger text-white">
+                                <h5 class="mb-0"><i class="bi bi-palette me-2"></i>Estilo Visual</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.video_style or 'Não especificado' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-danger">
+                            <div class="card-header bg-danger text-white">
+                                <h5 class="mb-0"><i class="bi bi-display me-2"></i>Resolução</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.video_resolution or 'Não especificada' }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <h2 class="text-lg font-semibold text-green-800 mb-2">Prompt Negativo</h2>
-                <div class="bg-gray-50 rounded-lg p-4">
-                    <p class="text-gray-700 whitespace-pre-wrap">{{ prompt.negative_prompt or 'Sem prompt negativo' }}</p>
+                {% elif prompt.category == 'traducao' %}
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card border-info">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="mb-0"><i class="bi bi-target me-2"></i>Objetivos</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.project_objectives or 'Sem objetivos' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-info">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="mb-0"><i class="bi bi-translate me-2"></i>Idioma Origem</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.trans_source_lang or 'Não especificado' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-info">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="mb-0"><i class="bi bi-translate me-2"></i>Idioma Destino</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.trans_target_lang or 'Não especificado' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-info">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="mb-0"><i class="bi bi-building me-2"></i>Domínio</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.trans_domain or 'Não especificado' }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <h2 class="text-lg font-semibold text-green-800 mb-2">Configurações</h2>
-                <div class="bg-gray-50 rounded-lg p-4">
-                    <p class="text-gray-700 whitespace-pre-wrap">{{ prompt.parameters or 'Sem configurações' }}</p>
+                {% else %}
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card border-primary">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="bi bi-target me-2"></i>Objetivos</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ prompt.project_objectives or 'Sem objetivos' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="alert alert-warning">
+                            <h5><i class="bi bi-exclamation-triangle me-2"></i>Configurações específicas não disponíveis</h5>
+                            <p class="mb-0">Esta categoria ainda não possui configurações específicas implementadas.</p>
+                        </div>
+                    </div>
                 </div>
+                {% endif %}
             </div>
         </div>
         {% else %}
-        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-            <p class="text-yellow-800">Categoria de prompt não reconhecida.</p>
+        <div class="alert alert-danger text-center">
+            <h4 class="alert-heading"><i class="bi bi-exclamation-triangle me-2"></i>Erro ao carregar o prompt</h4>
+            <p>O prompt solicitado não foi encontrado ou não está disponível.</p>
+            <a href="{{ url_for('list_prompts') }}" class="btn btn-primary">
+                <i class="bi bi-arrow-left me-2"></i>Voltar para a lista de prompts
+            </a>
         </div>
         {% endif %}
     </div>
-    {% else %}
-    <div class="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
-        <h2 class="text-xl font-semibold text-red-800 mb-2">Erro ao carregar o prompt</h2>
-        <p class="text-red-600">O prompt solicitado não foi encontrado ou não está disponível.</p>
-        <a href="{{ url_for('list_prompts') }}" class="btn-secondary mt-4 inline-block">
-            <i class="bi bi-arrow-left"></i> Voltar para a lista de prompts
-        </a>
-    </div>
-    {% endif %}
 </div>
 
-<style>
-.btn-secondary {
-    @apply inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-lg transition-colors;
-}
-.btn-primary {
-    @apply inline-flex items-center gap-2 bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold py-2 px-4 rounded-lg transition-colors;
-}
-.btn-danger {
-    @apply inline-flex items-center gap-2 bg-red-100 hover:bg-red-200 text-red-700 font-semibold py-2 px-4 rounded-lg transition-colors;
-}
-.btn-success {
-    @apply inline-flex items-center gap-2 bg-green-100 hover:bg-green-200 text-green-700 font-semibold py-2 px-4 rounded-lg transition-colors;
-}
-</style>
+<script type="application/json" id="prompt-json-data">
+{{ prompt_data_json | safe }}
+</script>
 
 <script>
 function exportPrompt() {
-    if (!document.querySelector('.bg-white')) {
+    alert('Função exportPrompt foi chamada!');
+
+    // Get the JSON data from the script tag
+    const jsonScript = document.getElementById('prompt-json-data');
+    if (!jsonScript) {
+        alert('Erro: Elemento JSON não encontrado');
         return;
     }
-    
-    const promptData = {
-        project_name: "{{ prompt.project_name if prompt else '' }}",
-        project_description: "{{ prompt.project_description if prompt else '' }}",
-        category: "{{ prompt.category if prompt else '' }}",
-        {% if prompt and prompt.category == 'texto' %}
-        prompt: "{{ prompt.prompt or '' }}",
-        parameters: "{{ prompt.parameters or '' }}"
-        {% elif prompt and prompt.category == 'imagem' %}
-        positive_prompt: "{{ prompt.positive_prompt or '' }}",
-        negative_prompt: "{{ prompt.negative_prompt or '' }}",
-        parameters: "{{ prompt.parameters or '' }}"
-        {% endif %}
-    };
 
-    const blob = new Blob([JSON.stringify(promptData, null, 2)], { type: 'application/json' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `prompt-{{ prompt.project_name if prompt else 'unknown' }}.json`;
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-    document.body.removeChild(a);
+    const jsonContent = jsonScript.textContent || jsonScript.innerText;
+    alert('Conteúdo JSON encontrado, tamanho: ' + jsonContent.length);
+
+    if (!jsonContent || jsonContent.trim() === '') {
+        alert('Erro: Conteúdo JSON vazio');
+        return;
+    }
+
+    try {
+        const promptData = JSON.parse(jsonContent);
+        alert('JSON parseado com sucesso! Chaves: ' + Object.keys(promptData).join(', '));
+
+        const blob = new Blob([JSON.stringify(promptData, null, 2)], { type: 'application/json' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        const filename = `prompt-${(promptData.project_name || 'unknown').replace(/[^a-zA-Z0-9]/g, '_')}.json`;
+        a.download = filename;
+
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+
+        alert('JSON exportado com sucesso! Arquivo: ' + filename);
+
+    } catch (error) {
+        alert('Erro ao processar JSON: ' + error.message);
+    }
 }
 </script>
 {% endblock %}

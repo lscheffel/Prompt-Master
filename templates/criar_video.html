@@ -1,19 +1,19 @@
 {% extends "base.html" %}
-{% block title %}Criar Prompt de Texto{% endblock %}
+{% block title %}Criar Prompt de Vídeo{% endblock %}
 {% block content %}
-<div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-5">
+<div class="min-h-screen bg-gradient-to-br from-red-50 via-orange-50 to-pink-50 py-5">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-10 col-xl-8">
                 <!-- Header Section -->
                 <div class="text-center mb-5">
-                    <div class="d-inline-flex align-items-center justify-content-center w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full mb-4 shadow-lg">
-                        <i class="bi bi-file-text text-white fs-1"></i>
+                    <div class="d-inline-flex align-items-center justify-content-center w-20 h-20 bg-gradient-to-r from-red-500 to-orange-500 rounded-full mb-4 shadow-lg">
+                        <i class="bi bi-film text-white fs-1"></i>
                     </div>
-                    <h1 class="display-5 fw-bold text-gray-800 mb-3">Criar Prompt de Texto</h1>
-                    <p class="lead text-muted">Configure um prompt personalizado para geração de conteúdo textual</p>
+                    <h1 class="display-5 fw-bold text-gray-800 mb-3">Criar Prompt de Vídeo</h1>
+                    <p class="lead text-muted">Configure um prompt detalhado para geração de vídeos</p>
                     <div class="progress" style="height: 4px;">
-                        <div class="progress-bar bg-gradient-to-r from-blue-500 to-blue-600" role="progressbar" style="width: 100%"></div>
+                        <div class="progress-bar bg-gradient-to-r from-red-500 to-orange-500" role="progressbar" style="width: 100%"></div>
                     </div>
                 </div>
 
@@ -27,9 +27,9 @@
                             <div class="mb-4">
                                 <div class="position-relative">
                                     <label for="{{ form.project_name.id }}" class="form-label fw-bold text-gray-700 mb-2">
-                                        <i class="bi bi-tag text-primary me-2"></i>{{ form.project_name.label }}
+                                        <i class="bi bi-tag text-red me-2"></i>{{ form.project_name.label }}
                                     </label>
-                                    {{ form.project_name(class="form-control form-control-lg border-0 shadow-sm", style="border-radius: 15px; padding: 1rem 1.5rem; background: rgba(255, 255, 255, 0.8);", placeholder="Dê um nome ao seu projeto") }}
+                                    {{ form.project_name(class="form-control form-control-lg border-0 shadow-sm", style="border-radius: 15px; padding: 1rem 1.5rem; background: rgba(255, 255, 255, 0.8);", placeholder="Nome do seu projeto de vídeo") }}
                                     <div class="invalid-feedback">
                                         {% for error in form.project_name.errors %}
                                             {{ error }}
@@ -43,9 +43,9 @@
                                 <div class="col-md-6">
                                     <div class="position-relative">
                                         <label for="{{ form.project_description.id }}" class="form-label fw-bold text-gray-700 mb-2">
-                                            <i class="bi bi-card-text text-success me-2"></i>{{ form.project_description.label }}
+                                            <i class="bi bi-card-text text-primary me-2"></i>{{ form.project_description.label }}
                                         </label>
-                                        {{ form.project_description(class="form-control border-0 shadow-sm", style="border-radius: 15px; padding: 1rem 1.5rem; background: rgba(255, 255, 255, 0.8); min-height: 120px;", rows="4", placeholder="Descreva detalhadamente o que o prompt deve gerar") }}
+                                        {{ form.project_description(class="form-control border-0 shadow-sm", style="border-radius: 15px; padding: 1rem 1.5rem; background: rgba(255, 255, 255, 0.8); min-height: 120px;", rows="4", placeholder="Descreva o conteúdo e narrativa do vídeo") }}
                                         <div class="invalid-feedback">
                                             {% for error in form.project_description.errors %}
                                                 {{ error }}
@@ -58,7 +58,7 @@
                                         <label for="{{ form.project_objectives.id }}" class="form-label fw-bold text-gray-700 mb-2">
                                             <i class="bi bi-bullseye text-warning me-2"></i>{{ form.project_objectives.label }}
                                         </label>
-                                        {{ form.project_objectives(class="form-control border-0 shadow-sm", style="border-radius: 15px; padding: 1rem 1.5rem; background: rgba(255, 255, 255, 0.8); min-height: 120px;", rows="4", placeholder="Quais são os objetivos específicos do conteúdo?") }}
+                                        {{ form.project_objectives(class="form-control border-0 shadow-sm", style="border-radius: 15px; padding: 1rem 1.5rem; background: rgba(255, 255, 255, 0.8); min-height: 120px;", rows="4", placeholder="Objetivos específicos do vídeo") }}
                                         <div class="invalid-feedback">
                                             {% for error in form.project_objectives.errors %}
                                                 {{ error }}
@@ -68,59 +68,50 @@
                                 </div>
                             </div>
 
-                            <!-- Configuration Section -->
+                            <!-- Video Configuration Section -->
                             <div class="mb-4">
                                 <h5 class="fw-bold text-gray-800 mb-3">
-                                    <i class="bi bi-gear text-info me-2"></i>Configurações da IA
+                                    <i class="bi bi-film text-red me-2"></i>Configurações de Vídeo
                                 </h5>
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="position-relative">
-                                            <label for="{{ form.language.id }}" class="form-label fw-semibold text-gray-700">
-                                                {{ form.language.label }}
+                                            <label for="{{ form.duration.id }}" class="form-label fw-semibold text-gray-700">
+                                                {{ form.duration.label }}
                                             </label>
-                                            {{ form.language(class="form-select border-0 shadow-sm", style="border-radius: 12px; background: rgba(255, 255, 255, 0.8);") }}
+                                            {{ form.duration(class="form-select border-0 shadow-sm", style="border-radius: 12px; background: rgba(255, 255, 255, 0.8);") }}
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="position-relative">
-                                            <label for="{{ form.temperature.id }}" class="form-label fw-semibold text-gray-700">
-                                                {{ form.temperature.label }}
+                                            <label for="{{ form.style.id }}" class="form-label fw-semibold text-gray-700">
+                                                {{ form.style.label }}
                                             </label>
-                                            {{ form.temperature(class="form-select border-0 shadow-sm", style="border-radius: 12px; background: rgba(255, 255, 255, 0.8);") }}
+                                            {{ form.style(class="form-select border-0 shadow-sm", style="border-radius: 12px; background: rgba(255, 255, 255, 0.8);") }}
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-md-4">
                                         <div class="position-relative">
-                                            <label for="{{ form.tone.id }}" class="form-label fw-semibold text-gray-700">
-                                                {{ form.tone.label }}
+                                            <label for="{{ form.resolution.id }}" class="form-label fw-semibold text-gray-700">
+                                                {{ form.resolution.label }}
                                             </label>
-                                            {{ form.tone(class="form-select border-0 shadow-sm", style="border-radius: 12px; background: rgba(255, 255, 255, 0.8);") }}
+                                            {{ form.resolution(class="form-select border-0 shadow-sm", style="border-radius: 12px; background: rgba(255, 255, 255, 0.8);") }}
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!-- Advanced Section -->
-                            <div class="mb-4">
-                                <h5 class="fw-bold text-gray-800 mb-3">
-                                    <i class="bi bi-sliders text-secondary me-2"></i>Configurações Avançadas
-                                </h5>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="position-relative">
-                                            <label for="{{ form.persona.id }}" class="form-label fw-semibold text-gray-700">
-                                                {{ form.persona.label }}
+                                            <label for="{{ form.frame_rate.id }}" class="form-label fw-semibold text-gray-700">
+                                                {{ form.frame_rate.label }}
                                             </label>
-                                            {{ form.persona(class="form-control border-0 shadow-sm", style="border-radius: 12px; padding: 0.75rem 1rem; background: rgba(255, 255, 255, 0.8); min-height: 80px;", rows="3", placeholder="Como a IA deve se comportar?") }}
+                                            {{ form.frame_rate(class="form-select border-0 shadow-sm", style="border-radius: 12px; background: rgba(255, 255, 255, 0.8);") }}
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="position-relative">
-                                            <label for="{{ form.protocols.id }}" class="form-label fw-semibold text-gray-700">
-                                                {{ form.protocols.label }}
+                                            <label for="{{ form.aspect_ratio.id }}" class="form-label fw-semibold text-gray-700">
+                                                {{ form.aspect_ratio.label }}
                                             </label>
-                                            {{ form.protocols(class="form-control border-0 shadow-sm", style="border-radius: 12px; padding: 0.75rem 1rem; background: rgba(255, 255, 255, 0.8); min-height: 80px;", rows="3", placeholder="Regras e protocolos específicos") }}
+                                            {{ form.aspect_ratio(class="form-select border-0 shadow-sm", style="border-radius: 12px; background: rgba(255, 255, 255, 0.8);") }}
                                         </div>
                                     </div>
                                 </div>
@@ -128,15 +119,15 @@
 
                             <!-- Submit Section -->
                             <div class="text-center pt-4 border-top border-light">
-                                <button type="submit" class="btn btn-lg px-5 py-3 rounded-pill shadow-lg position-relative overflow-hidden" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; color: white;">
+                                <button type="submit" class="btn btn-lg px-5 py-3 rounded-pill shadow-lg position-relative overflow-hidden" style="background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%); border: none; color: white;">
                                     <span class="position-relative z-index-1">
-                                        <i class="bi bi-rocket-takeoff me-2"></i>Gerar Prompt
+                                        <i class="bi bi-film me-2"></i>Gerar Prompt de Vídeo
                                     </span>
                                     <div class="position-absolute top-0 start-0 w-100 h-100 bg-white opacity-0 hover-opacity-10 transition-all rounded-pill"></div>
                                 </button>
                                 <p class="text-muted mt-3 mb-0">
                                     <i class="bi bi-info-circle me-1"></i>
-                                    Seu prompt será salvo e poderá ser visualizado na lista de prompts
+                                    Seu prompt será salvo e poderá ser usado para gerar vídeos
                                 </p>
                             </div>
                         </form>
@@ -146,11 +137,11 @@
                 <!-- Navigation Footer -->
                 <div class="text-center mt-4">
                     <div class="d-flex justify-content-center gap-3">
-                        <a href="{{ url_for('index') }}" class="btn btn-outline-primary btn-lg rounded-pill px-4">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-danger btn-lg rounded-pill px-4">
                             <i class="bi bi-house-door me-2"></i>Voltar ao Início
                         </a>
-                        <a href="{{ url_for('list_prompts') }}" class="btn btn-outline-success btn-lg rounded-pill px-4">
-                            <i class="bi bi-list-ul me-2"></i>Ver Meus Prompts
+                        <a href="{{ url_for('list_prompts') }}" class="btn btn-outline-danger btn-lg rounded-pill px-4">
+                            <i class="bi bi-film me-2"></i>Ver Meus Vídeos
                         </a>
                     </div>
                 </div>

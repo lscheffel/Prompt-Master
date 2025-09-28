@@ -2,95 +2,249 @@
 {% block title %}Meus Prompts{% endblock %}
 
 {% block content %}
-<div class="bg-gradient-to-br from-blue-50 to-blue-100 text-gray-900 rounded-xl shadow-lg p-8">
-    <div class="flex justify-between items-center mb-8">
-        <h1 class="text-3xl font-bold text-blue-900">Meus Prompts</h1>
-        <a href="{{ url_for('index') }}" class="btn-secondary">
-            <i class="bi bi-plus-circle"></i> Novo Prompt
-        </a>
-    </div>
-    
-    <div class="prompt-categories space-y-12">
-        <!-- Seção de Prompts de Texto -->
-        <section>
-            <h2 class="text-2xl font-semibold mb-6 text-blue-800 border-b border-blue-200 pb-3 flex items-center">
-                <i class="bi bi-file-text mr-2"></i>Prompts de Texto
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {% for prompt in prompts if prompt.category == 'texto' %}
-                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6">
-                    <h3 class="text-xl font-semibold text-blue-700 mb-3">{{ prompt.project_name }}</h3>
-                    <p class="text-gray-600 text-sm mb-4 line-clamp-2">{{ prompt.project_description }}</p>
-                    <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-100">
-                        <span class="text-xs text-gray-500">{{ prompt.created_at.strftime('%d/%m/%Y') }}</span>
-                        <div class="flex gap-2">
-                            <a href="{{ url_for('view_prompt', id=prompt.id) }}" 
-                               class="btn-info">
-                                <i class="bi bi-eye"></i> Detalhes
-                            </a>
-                            <form action="{{ url_for('delete_prompt_by_id', id=prompt.id) }}" method="POST" class="inline">
-                                <button type="submit" class="btn-danger"
-                                    onclick="return confirm('Tem certeza que deseja excluir este prompt?')">
-                                    <i class="bi bi-trash"></i> Excluir
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </section>
+<div class="card shadow-lg border-0 rounded-4 mb-5">
+    <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h2 text-primary fw-bold mb-0">
+                <i class="bi bi-list-ul me-2"></i>Meus Prompts
+            </h1>
+            <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg rounded-pill">
+                <i class="bi bi-plus-circle me-2"></i>Novo Prompt
+            </a>
+        </div>
 
-        <!-- Seção de Prompts de Imagem -->
-        <section>
-            <h2 class="text-2xl font-semibold mb-6 text-green-800 border-b border-green-200 pb-3 flex items-center">
-                <i class="bi bi-image mr-2"></i>Prompts de Imagem
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {% for prompt in prompts if prompt.category == 'imagem' %}
-                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6">
-                    <h3 class="text-xl font-semibold text-green-700 mb-3">{{ prompt.project_name }}</h3>
-                    <div class="space-y-3">
-                        <div class="text-sm text-gray-600">
-                            <p class="font-medium text-green-600">Prompt Positivo:</p>
-                            <p class="line-clamp-2 mt-1">{{ prompt.positive_prompt }}</p>
-                        </div>
-                        <div class="text-sm text-gray-600">
-                            <p class="font-medium text-green-600">Prompt Negativo:</p>
-                            <p class="line-clamp-2 mt-1">{{ prompt.negative_prompt }}</p>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-100">
-                        <span class="text-xs text-gray-500">{{ prompt.created_at.strftime('%d/%m/%Y') }}</span>
-                        <div class="flex gap-2">
-                            <a href="{{ url_for('view_prompt', id=prompt.id) }}" 
-                               class="btn-info">
-                                <i class="bi bi-eye"></i> Detalhes
-                            </a>
-                            <form action="{{ url_for('delete_prompt_by_id', id=prompt.id) }}" method="POST" class="inline">
-                                <button type="submit" class="btn-danger"
-                                    onclick="return confirm('Tem certeza que deseja excluir este prompt?')">
-                                    <i class="bi bi-trash"></i> Excluir
-                                </button>
-                            </form>
-                        </div>
-                    </div>
+        <!-- Categories Navigation -->
+        <div class="mb-4">
+            <nav aria-label="Prompt categories">
+                <div class="nav nav-pills flex-wrap" id="prompt-categories" role="tablist">
+                    <button class="nav-link active" id="todos-tab" data-bs-toggle="pill" data-bs-target="#todos" type="button" role="tab">
+                        <i class="bi bi-grid me-1"></i>Todos
+                    </button>
+                    <button class="nav-link" id="texto-tab" data-bs-toggle="pill" data-bs-target="#texto" type="button" role="tab">
+                        <i class="bi bi-file-text me-1"></i>Texto
+                    </button>
+                    <button class="nav-link" id="imagem-tab" data-bs-toggle="pill" data-bs-target="#imagem" type="button" role="tab">
+                        <i class="bi bi-image me-1"></i>Imagem
+                    </button>
+                    <button class="nav-link" id="audio-tab" data-bs-toggle="pill" data-bs-target="#audio" type="button" role="tab">
+                        <i class="bi bi-music-note-beamed me-1"></i>Áudio
+                    </button>
+                    <button class="nav-link" id="codigo-tab" data-bs-toggle="pill" data-bs-target="#codigo" type="button" role="tab">
+                        <i class="bi bi-code-square me-1"></i>Código
+                    </button>
+                    <button class="nav-link" id="video-tab" data-bs-toggle="pill" data-bs-target="#video" type="button" role="tab">
+                        <i class="bi bi-film me-1"></i>Vídeo
+                    </button>
+                    <button class="nav-link" id="documento-tab" data-bs-toggle="pill" data-bs-target="#documento" type="button" role="tab">
+                        <i class="bi bi-file-earmark-text me-1"></i>Documento
+                    </button>
+                    <button class="nav-link" id="apresentacao-tab" data-bs-toggle="pill" data-bs-target="#apresentacao" type="button" role="tab">
+                        <i class="bi bi-easel me-1"></i>Apresentação
+                    </button>
+                    <button class="nav-link" id="infografico-tab" data-bs-toggle="pill" data-bs-target="#infografico" type="button" role="tab">
+                        <i class="bi bi-bar-chart me-1"></i>Infográfico
+                    </button>
+                    <button class="nav-link" id="animacao-tab" data-bs-toggle="pill" data-bs-target="#animacao" type="button" role="tab">
+                        <i class="bi bi-play-circle me-1"></i>Animação
+                    </button>
+                    <button class="nav-link" id="website-tab" data-bs-toggle="pill" data-bs-target="#website" type="button" role="tab">
+                        <i class="bi bi-globe me-1"></i>Website
+                    </button>
+                    <button class="nav-link" id="dados-tab" data-bs-toggle="pill" data-bs-target="#dados" type="button" role="tab">
+                        <i class="bi bi-graph-up me-1"></i>Dados
+                    </button>
+                    <button class="nav-link" id="traducao-tab" data-bs-toggle="pill" data-bs-target="#traducao" type="button" role="tab">
+                        <i class="bi bi-translate me-1"></i>Tradução
+                    </button>
+                    <button class="nav-link" id="resumo-tab" data-bs-toggle="pill" data-bs-target="#resumo" type="button" role="tab">
+                        <i class="bi bi-file-minus me-1"></i>Resumo
+                    </button>
+                    <button class="nav-link" id="marketing-tab" data-bs-toggle="pill" data-bs-target="#marketing" type="button" role="tab">
+                        <i class="bi bi-megaphone me-1"></i>Marketing
+                    </button>
+                    <button class="nav-link" id="educacao-tab" data-bs-toggle="pill" data-bs-target="#educacao" type="button" role="tab">
+                        <i class="bi bi-mortarboard me-1"></i>Educação
+                    </button>
                 </div>
-                {% endfor %}
+            </nav>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="prompt-categories-content">
+            <!-- Todos -->
+            <div class="tab-pane fade show active" id="todos" role="tabpanel">
+                <div class="row g-4">
+                    {% for prompt in prompts %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-{% if prompt.category == 'texto' %}primary{% elif prompt.category == 'imagem' %}success{% elif prompt.category == 'audio' %}warning{% elif prompt.category == 'codigo' %}info{% elif prompt.category == 'video' %}danger{% else %}secondary{% endif %}">
+                            <div class="card-header bg-{% if prompt.category == 'texto' %}primary{% elif prompt.category == 'imagem' %}success{% elif prompt.category == 'audio' %}warning{% elif prompt.category == 'codigo' %}info{% elif prompt.category == 'video' %}danger{% else %}secondary{% endif %} text-white">
+                                <small class="fw-bold">
+                                    <i class="bi bi-tag me-1"></i>{{ prompt.category.title() }}
+                                </small>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    {% if prompt.category == 'texto' %}<i class="bi bi-file-text me-2"></i>
+                                    {% elif prompt.category == 'imagem' %}<i class="bi bi-image me-2"></i>
+                                    {% elif prompt.category == 'audio' %}<i class="bi bi-music-note-beamed me-2"></i>
+                                    {% elif prompt.category == 'codigo' %}<i class="bi bi-code-square me-2"></i>
+                                    {% elif prompt.category == 'video' %}<i class="bi bi-film me-2"></i>
+                                    {% elif prompt.category == 'documento' %}<i class="bi bi-file-earmark-text me-2"></i>
+                                    {% elif prompt.category == 'apresentacao' %}<i class="bi bi-easel me-2"></i>
+                                    {% elif prompt.category == 'infografico' %}<i class="bi bi-bar-chart me-2"></i>
+                                    {% elif prompt.category == 'animacao' %}<i class="bi bi-play-circle me-2"></i>
+                                    {% elif prompt.category == 'website' %}<i class="bi bi-globe me-2"></i>
+                                    {% elif prompt.category == 'dados' %}<i class="bi bi-graph-up me-2"></i>
+                                    {% elif prompt.category == 'traducao' %}<i class="bi bi-translate me-2"></i>
+                                    {% elif prompt.category == 'resumo' %}<i class="bi bi-file-minus me-2"></i>
+                                    {% elif prompt.category == 'marketing' %}<i class="bi bi-megaphone me-2"></i>
+                                    {% elif prompt.category == 'educacao' %}<i class="bi bi-mortarboard me-2"></i>
+                                    {% else %}<i class="bi bi-star me-2"></i>{% endif %}
+                                    {{ prompt.project_name }}
+                                </h5>
+                                <p class="card-text text-muted small">{{ prompt.project_description[:100] }}...</p>
+                                <div class="mt-3">
+                                    <small class="text-muted">
+                                        <i class="bi bi-calendar me-1"></i>{{ prompt.created_at.strftime('%d/%m/%Y %H:%M') }}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-0">
+                                <div class="d-flex gap-2">
+                                    <a href="{{ url_for('view_prompt', id=prompt.id) }}" class="btn btn-outline-primary btn-sm">
+                                        <i class="bi bi-eye me-1"></i>Ver
+                                    </a>
+                                    <form action="{{ url_for('delete_prompt_by_id', id=prompt.id) }}" method="POST" class="d-inline">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm"
+                                                onclick="return confirm('Tem certeza que deseja excluir este prompt?')">
+                                            <i class="bi bi-trash me-1"></i>Excluir
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
-        </section>
+
+            <!-- Texto -->
+            <div class="tab-pane fade" id="texto" role="tabpanel">
+                <div class="row g-4">
+                    {% for prompt in prompts if prompt.category == 'texto' %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 border-primary shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">
+                                    <i class="bi bi-file-text me-2"></i>{{ prompt.project_name }}
+                                </h5>
+                                <p class="card-text text-muted small">{{ prompt.project_description[:100] }}...</p>
+                                <div class="mt-3">
+                                    <small class="text-muted">
+                                        <i class="bi bi-calendar me-1"></i>{{ prompt.created_at.strftime('%d/%m/%Y %H:%M') }}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-0">
+                                <div class="d-flex gap-2">
+                                    <a href="{{ url_for('view_prompt', id=prompt.id) }}" class="btn btn-outline-primary btn-sm">
+                                        <i class="bi bi-eye me-1"></i>Ver
+                                    </a>
+                                    <form action="{{ url_for('delete_prompt_by_id', id=prompt.id) }}" method="POST" class="d-inline">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm"
+                                                onclick="return confirm('Tem certeza que deseja excluir este prompt?')">
+                                            <i class="bi bi-trash me-1"></i>Excluir
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Imagem -->
+            <div class="tab-pane fade" id="imagem" role="tabpanel">
+                <div class="row g-4">
+                    {% for prompt in prompts if prompt.category == 'imagem' %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 border-success shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title text-success">
+                                    <i class="bi bi-image me-2"></i>{{ prompt.project_name }}
+                                </h5>
+                                <div class="mb-2">
+                                    <small class="text-muted fw-bold">Prompt Positivo:</small>
+                                    <p class="card-text small mb-2">{{ prompt.positive_prompt[:80] }}...</p>
+                                </div>
+                                <div class="mb-2">
+                                    <small class="text-muted fw-bold">Prompt Negativo:</small>
+                                    <p class="card-text small">{{ prompt.negative_prompt[:80] }}...</p>
+                                </div>
+                                <div class="mt-3">
+                                    <small class="text-muted">
+                                        <i class="bi bi-calendar me-1"></i>{{ prompt.created_at.strftime('%d/%m/%Y %H:%M') }}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-0">
+                                <div class="d-flex gap-2">
+                                    <a href="{{ url_for('view_prompt', id=prompt.id) }}" class="btn btn-outline-success btn-sm">
+                                        <i class="bi bi-eye me-1"></i>Ver
+                                    </a>
+                                    <form action="{{ url_for('delete_prompt_by_id', id=prompt.id) }}" method="POST" class="d-inline">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm"
+                                                onclick="return confirm('Tem certeza que deseja excluir este prompt?')">
+                                            <i class="bi bi-trash me-1"></i>Excluir
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Other categories with similar structure -->
+            {% for category in ['audio', 'codigo', 'video', 'documento', 'apresentacao', 'infografico', 'animacao', 'website', 'dados', 'traducao', 'resumo', 'marketing', 'educacao'] %}
+            <div class="tab-pane fade" id="{{ category }}" role="tabpanel">
+                <div class="row g-4">
+                    {% for prompt in prompts if prompt.category == category %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <i class="bi bi-star me-2"></i>{{ prompt.project_name }}
+                                </h5>
+                                <p class="card-text text-muted small">{{ prompt.project_description[:100] }}...</p>
+                                <div class="mt-3">
+                                    <small class="text-muted">
+                                        <i class="bi bi-calendar me-1"></i>{{ prompt.created_at.strftime('%d/%m/%Y %H:%M') }}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-0">
+                                <div class="d-flex gap-2">
+                                    <a href="{{ url_for('view_prompt', id=prompt.id) }}" class="btn btn-outline-primary btn-sm">
+                                        <i class="bi bi-eye me-1"></i>Ver
+                                    </a>
+                                    <form action="{{ url_for('delete_prompt_by_id', id=prompt.id) }}" method="POST" class="d-inline">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm"
+                                                onclick="return confirm('Tem certeza que deseja excluir este prompt?')">
+                                            <i class="bi bi-trash me-1"></i>Excluir
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
-
-<style>
-.btn-secondary {
-    @apply inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-lg transition-colors;
-}
-.btn-info {
-    @apply inline-flex items-center gap-2 bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold py-2 px-4 rounded-lg transition-colors;
-}
-.btn-danger {
-    @apply inline-flex items-center gap-2 bg-red-100 hover:bg-red-200 text-red-700 font-semibold py-2 px-4 rounded-lg transition-colors;
-}
-</style>
 {% endblock %}

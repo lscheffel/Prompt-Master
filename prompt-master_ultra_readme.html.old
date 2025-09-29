@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Master - Descrição Completa do Repositório</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        html{scroll-behavior:smooth}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;color:#333;background-color:#f8f9fa;padding-top:76px}
+        .navbar{position:fixed;top:0;width:100%;z-index:1030;margin-bottom:0;background-color:#212529!important;box-shadow:0 2px 4px rgba(0,0,0,0.1)}
+        .highlight{color:#0d6efd;font-weight:bold}
+        .section-title{margin:40px 0 20px;text-align:center;font-size:2rem}
+        .card{margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,0.1);border-radius:12px;transition:transform 0.2s}
+        .card:hover{transform:translateY(-5px)}
+        .accordion-button{font-weight:500}
+        footer{background:#212529;color:white;padding:20px 0;text-align:center;margin-top:40px}
+        footer a{color:#0d6efd;text-decoration:none}
+        footer a:hover{text-decoration:underline}
+        .hero{background:linear-gradient(135deg,#0d6efd,#6610f2);color:white;padding:80px 20px;text-align:center;border-radius:12px;margin-bottom:40px}
+        .hero h1{font-size:3rem;margin-bottom:20px}
+        .hero p{font-size:1.25rem}
+        .badges img{margin:5px}
+        #backToTop{position:fixed;bottom:20px;right:20px;display:none;background-color:#0d6efd;color:white;border:none;border-radius:50%;width:50px;height:50px;font-size:24px;cursor:pointer;box-shadow:0 4px 6px rgba(0,0,0,0.3);transition:background-color 0.3s}
+        #backToTop:hover{background-color:#0b5ed7}
+    </style>
+</head>
+<body>
+    <!-- Navbar Fixo -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#hero">
+                <i class="bi bi-robot me-2"></i>Prompt Master
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#manifesto">Manifesto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#arquivos">Arquivos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#analise">Análise</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#funcoes">Funções</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#versionamento">Versionamento</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#proximos">Próximos Passos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sugestoes">Sugestões</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contribuir">Contribuir</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <h1 class="display-4 fw-bold">
+                <i class="bi bi-robot me-3"></i>Prompt Master
+            </h1>
+            <p class="lead mb-4">
+                Gerador e formatador de prompts para agentes de IA - Uma ferramenta completa para criar prompts estruturados e profissionais
+            </p>
+            <div class="badges mt-4">
+                <img src="https://img.shields.io/github/stars/lscheffel/Prompt-Master?style=social" alt="GitHub stars">
+                <img src="https://img.shields.io/github/forks/lscheffel/Prompt-Master?style=social" alt="GitHub forks">
+                <img src="https://img.shields.io/github/issues/lscheffel/Prompt-Master" alt="GitHub issues">
+                <img src="https://img.shields.io/badge/python-3.8+-blue" alt="Python Version">
+                <img src="https://img.shields.io/badge/flask-3.0+-red" alt="Flask Version">
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Manifesto Section -->
+        <section id="manifesto" class="section-title">
+            <h2 class="highlight">
+                <i class="bi bi-flag me-2"></i>Manifesto do Projeto
+            </h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card p-4">
+                        <p class="lead text-center mb-4">
+                            <strong>Prompt Master</strong> é uma aplicação web desenvolvida para revolucionar a forma como criamos e gerenciamos prompts para agentes de IA.
+                            Nossa missão é fornecer uma ferramenta intuitiva, poderosa e acessível que permite aos usuários criar prompts estruturados,
+                            profissionais e otimizados para diferentes tipos de conteúdo e aplicações.
+                        </p>
+                        <div class="row text-center">
+                            <div class="col-md-4">
+                                <i class="bi bi-lightbulb text-warning fs-1 mb-2"></i>
+                                <h5>Inovação</h5>
+                                <p>Interfaces modernas e tecnologia de ponta</p>
+                            </div>
+                            <div class="col-md-4">
+                                <i class="bi bi-shield-check text-success fs-1 mb-2"></i>
+                                <h5>Qualidade</h5>
+                                <p>Promps estruturados e profissionais</p>
+                            </div>
+                            <div class="col-md-4">
+                                <i class="bi bi-people text-primary fs-1 mb-2"></i>
+                                <h5>Acessibilidade</h5>
+                                <p>Ferramenta intuitiva para todos os usuários</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Arquivos Section -->
+        <section id="arquivos" class="section-title">
+            <h2 class="highlight">
+                <i class="bi bi-folder me-2"></i>Estrutura de Arquivos
+            </h2>
+            <div class="row">
+                <!-- Python Files -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-primary text-white">
+                            <i class="bi bi-file-earmark-code me-2"></i>Python
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">app.py</h6>
+                            <p class="card-text small">Arquivo principal da aplicação Flask com todas as rotas, modelos de dados e lógica de negócio.</p>
+                            <span class="badge bg-primary">Core</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-info text-white">
+                            <i class="bi bi-file-earmark-code me-2"></i>Python
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">forms.py</h6>
+                            <p class="card-text small">Definições de todos os formulários WTForms utilizados na aplicação.</p>
+                            <span class="badge bg-info">Forms</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Configuration Files -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-success text-white">
+                            <i class="bi bi-file-earmark-text me-2"></i>Config
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">requirements.txt</h6>
+                            <p class="card-text small">Lista de dependências Python necessárias para executar o projeto.</p>
+                            <span class="badge bg-success">Dependencies</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template Files -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-warning text-dark">
+                            <i class="bi bi-file-earmark-ruled me-2"></i>Templates
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">base.html</h6>
+                            <p class="card-text small">Template base com layout comum para todas as páginas.</p>
+                            <span class="badge bg-warning">Layout</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-danger text-white">
+                            <i class="bi bi-file-earmark-ruled me-2"></i>Templates
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">index.html</h6>
+                            <p class="card-text small">Página inicial com navegação para diferentes tipos de prompts.</p>
+                            <span class="badge bg-danger">Home</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Static Files -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-secondary text-white">
+                            <i class="bi bi-folder me-2"></i>Static
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">CSS/JS Assets</h6>
+                            <p class="card-text small">Arquivos estáticos compilados (CSS, JavaScript) para o frontend.</p>
+                            <span class="badge bg-secondary">Assets</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Database -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-dark text-white">
+                            <i class="bi bi-database me-2"></i>Database
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">promptmaster.db</h6>
+                            <p class="card-text small">Banco de dados SQLite com todos os prompts salvos.</p>
+                            <span class="badge bg-dark">SQLite</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Documentation -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-light text-dark">
+                            <i class="bi bi-file-earmark-text me-2"></i>Docs
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">README.md</h6>
+                            <p class="card-text small">Documentação completa do projeto e instruções de uso.</p>
+                            <span class="badge bg-light text-dark">Docs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Análise Section -->
+        <section id="analise" class="section-title">
+            <h2 class="highlight">
+                <i class="bi bi-search me-2"></i>Análise Técnica
+            </h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card p-4">
+                        <h5 class="card-title mb-3">Arquitetura e Tecnologias</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6><i class="bi bi-code-square text-primary me-2"></i>Backend</h6>
+                                <ul class="list-unstyled">
+                                    <li><strong>Flask 3.0.3:</strong> Framework web moderno e leve</li>
+                                    <li><strong>SQLAlchemy:</strong> ORM para interação com banco de dados</li>
+                                    <li><strong>Flask-Migrate:</strong> Gerenciamento de migrações de banco</li>
+                                    <li><strong>WTForms:</strong> Validação e geração de formulários</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6><i class="bi bi-palette text-success me-2"></i>Frontend</h6>
+                                <ul class="list-unstyled">
+                                    <li><strong>Bootstrap 5:</strong> Framework CSS responsivo</li>
+                                    <li><strong>Tailwind CSS:</strong> Utilitários para estilização</li>
+                                    <li><strong>Jinja2:</strong> Templates dinâmicos</li>
+                                    <li><strong>JavaScript:</strong> Interatividade e validações</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <hr>
+                        <h6><i class="bi bi-diagram-3 text-info me-2"></i>Arquitetura da Aplicação</h6>
+                        <p>O Prompt Master segue uma arquitetura MVC (Model-View-Controller) simplificada:</p>
+                        <ul>
+                            <li><strong>Models:</strong> Definem a estrutura de dados (Prompt)</li>
+                            <li><strong>Views:</strong> Templates HTML com Bootstrap para interface</li>
+                            <li><strong>Controller:</strong> Rotas Flask que conectam models e views</li>
+                            <li><strong>Forms:</strong> Validação e processamento de dados de entrada</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Funções Section -->
+        <section id="funcoes" class="section-title">
+            <h2 class="highlight">
+                <i class="bi bi-gear me-2"></i>Funcionalidades
+            </h2>
+            <div class="accordion" id="functionsAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                            <i class="bi bi-file-earmark-text me-2"></i>Criação de Prompts de Texto
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#functionsAccordion">
+                        <div class="accordion-body">
+                            Interface completa para criar prompts de texto com configurações avançadas:
+                            linguagem, temperatura, tom, persona e protocolos específicos.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                            <i class="bi bi-image me-2"></i>Geração de Prompts de Imagem
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#functionsAccordion">
+                        <div class="accordion-body">
+                            Ferramenta especializada para criar prompts detalhados de imagem com controle sobre:
+                            estilo, material, textura, iluminação, cor primária e efeitos de pós-processamento.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                            <i class="bi bi-collection me-2"></i>Gerenciamento de Prompts
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#functionsAccordion">
+                        <div class="accordion-body">
+                            Sistema completo de CRUD para gerenciar todos os prompts criados:
+                            visualizar, editar, excluir e exportar prompts em formato Markdown.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                            <i class="bi bi-music-note-beamed me-2"></i>Suporte a Múltiplos Tipos
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#functionsAccordion">
+                        <div class="accordion-body">
+                            Suporte para diversos tipos de conteúdo: texto, imagem, áudio, código, vídeo,
+                            apresentações, infográficos, animações, websites, dados, traduções, resumos,
+                            marketing e educação.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                            <i class="bi bi-download me-2"></i>Exportação e Compartilhamento
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#functionsAccordion">
+                        <div class="accordion-body">
+                            Capacidade de exportar prompts em formato Markdown para uso em outras plataformas
+                            e compartilhamento com outros usuários ou sistemas.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Versionamento Section -->
+        <section id="versionamento" class="section-title">
+            <h2 class="highlight">
+                <i class="bi bi-git-branch me-2"></i>Versionamento
+            </h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Histórico de Versões</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline">
+                                <div class="timeline-item mb-3">
+                                    <div class="timeline-marker bg-primary"></div>
+                                    <div class="timeline-content">
+                                        <h6 class="fw-bold">v1.0.0 - Lançamento Inicial</h6>
+                                        <p class="mb-1">Implementação completa do sistema de prompts com interface moderna</p>
+                                        <small class="text-muted">Funcionalidades: CRUD completo, múltiplos tipos de prompt, exportação</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Próximos Passos Section -->
+        <section id="proximos" class="section-title">
+            <h2 class="highlight">
+                <i class="bi bi-rocket me-2"></i>Próximos Passos
+            </h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-primary">
+                        <div class="card-header bg-primary text-white">
+                            <h6 class="mb-0">
+                                <i class="bi bi-lightbulb me-2"></i>Curto Prazo
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle text-success me-2"></i>Implementar autenticação de usuários</li>
+                                <li><i class="bi bi-circle me-2"></i>Adicionar sistema de templates pré-definidos</li>
+                                <li><i class="bi bi-circle me-2"></i>Melhorar validação de formulários</li>
+                                <li><i class="bi bi-circle me-2"></i>Adicionar funcionalidade de importação</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-info">
+                        <div class="card-header bg-info text-white">
+                            <h6 class="mb-0">
+                                <i class="bi bi-compass me-2"></i>Longo Prazo
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-circle me-2"></i>API REST para integração externa</li>
+                                <li><i class="bi bi-circle me-2"></i>Aplicativo móvel companion</li>
+                                <li><i class="bi bi-circle me-2"></i>IA integrada para sugestões de prompts</li>
+                                <li><i class="bi bi-circle me-2"></i>Sistema de colaboração em tempo real</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section-title">
+            <h2 class="highlight">
+                <i class="bi bi-question-circle me-2"></i>Perguntas Frequentes
+            </h2>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Como posso criar um prompt personalizado?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Navegue até a seção desejada (Texto, Imagem, etc.) e preencha os campos do formulário.
+                            Cada tipo de prompt tem configurações específicas para otimizar os resultados.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Posso editar ou excluir prompts já criados?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Sim! Na seção "Prompts" você pode visualizar todos os prompts criados, editá-los ou excluí-los conforme necessário.
+                            Todas as alterações são salvas automaticamente no banco de dados.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            Como exportar meus prompts?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Cada prompt possui um botão "Exportar" que gera um arquivo Markdown estruturado,
+                            pronto para ser usado em outras plataformas ou compartilhado.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            O Prompt Master é gratuito?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Sim! O Prompt Master é um projeto open source e completamente gratuito.
+                            Você pode usar, modificar e contribuir com o desenvolvimento.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sugestões Section -->
+        <section id="sugestoes" class="section-title">
+            <h2 class="highlight">
+                <i class="bi bi-lightbulb me-2"></i>Sugestões e Dicas
+            </h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-success text-white">
+                            <h6 class="mb-0">
+                                <i class="bi bi-check-circle me-2"></i>Melhores Práticas
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Seja específico nas descrições dos prompts</li>
+                                <li>Use linguagem clara e objetiva</li>
+                                <li>Teste diferentes configurações de parâmetros</li>
+                                <li>Organize seus prompts por categoria</li>
+                                <li>Faça backup regular dos dados importantes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-info text-white">
+                            <h6 class="mb-0">
+                                <i class="bi bi-tools me-2"></i>Manutenção
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Mantenha as dependências atualizadas</li>
+                                <li>Faça backup do banco de dados regularmente</li>
+                                <li>Monitore os logs da aplicação</li>
+                                <li>Teste novas funcionalidades em ambiente de desenvolvimento</li>
+                                <li>Mantenha a documentação atualizada</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contribuir Section -->
+        <section id="contribuir" class="section-title">
+            <h2 class="highlight">
+                <i class="bi bi-heart me-2"></i>Contribua com o Projeto
+            </h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card text-center p-4">
+                        <div class="card-body">
+                            <i class="bi bi-github fs-1 text-primary mb-3"></i>
+                            <h5 class="card-title">Junte-se à nossa comunidade!</h5>
+                            <p class="card-text">
+                                O Prompt Master é um projeto open source e adoramos contribuições da comunidade.
+                                Seja através de código, documentação, sugestões ou relatórios de bugs.
+                            </p>
+                            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                                <a href="https://github.com/lscheffel/Prompt-Master" class="btn btn-primary btn-lg">
+                                    <i class="bi bi-github me-2"></i>Ver no GitHub
+                                </a>
+                                <a href="https://github.com/lscheffel/Prompt-Master/issues" class="btn btn-outline-primary btn-lg">
+                                    <i class="bi bi-bug me-2"></i>Reportar Bug
+                                </a>
+                                <a href="https://github.com/lscheffel/Prompt-Master/pulls" class="btn btn-outline-success btn-lg">
+                                    <i class="bi bi-git-pull-request me-2"></i>Enviar PR
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h6 class="mb-0">Como Contribuir</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row text-start">
+                                <div class="col-md-6">
+                                    <h6><i class="bi bi-code-slash text-primary me-2"></i>Código</h6>
+                                    <ul class="small">
+                                        <li>Implemente novas funcionalidades</li>
+                                        <li>Corrija bugs existentes</li>
+                                        <li>Melhore a performance</li>
+                                        <li>Adicione testes automatizados</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><i class="bi bi-book text-success me-2"></i>Documentação</h6>
+                                    <ul class="small">
+                                        <li>Melhore este README</li>
+                                        <li>Adicione exemplos de uso</li>
+                                        <li>Traduza para outros idiomas</li>
+                                        <li>Crie tutoriais</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Prompt Master. Projeto open source desenvolvido com <i class="bi bi-heart-fill text-danger"></i> pela comunidade.</p>
+            <p>
+                <a href="https://github.com/lscheffel/Prompt-Master">GitHub</a> |
+                <a href="https://github.com/lscheffel/Prompt-Master/blob/main/LICENSE">Licença</a> |
+                <a href="#hero">Voltar ao topo</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" title="Voltar ao topo">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Back to Top Button
+        window.addEventListener('scroll', function() {
+            const backToTopButton = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scrolling for navbar links
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

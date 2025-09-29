@@ -1,9 +1,7 @@
 from app import app, db
-from flask_migrate import Migrate, MigrateCommand
+from flask_migrate import Migrate
 
 migrate = Migrate(app, db)
 
 if __name__ == '__main__':
-    from flask.cli import FlaskGroup
-    cli = FlaskGroup(app)
-    cli()
+    app.run()

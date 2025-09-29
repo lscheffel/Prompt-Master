@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
 from dotenv import load_dotenv
 from forms import (
     PromptForm, ImagePromptForm, AudioPromptForm, CodePromptForm, VideoPromptForm,
@@ -8,6 +9,8 @@ from forms import (
     WebsitePromptForm, DataPromptForm, TranslationPromptForm, SummaryPromptForm,
     MarketingPromptForm, EducationPromptForm
 )
+from api import api_bp  # API Blueprint
+from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import logging
 import uuid
@@ -23,20 +26,28 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'your-secure-secret-key')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///promptmaster.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY', 'your-jwt-secret-key')
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+jwt = JWTManager(app)
+
+# Register API Blueprint
+app.register_blueprint(api_bp)
 
 # Modelo de Prompt com UUID
 class Prompt(db.Model):
     id = db.Column(db.UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     project_name = db.Column(db.String(100), nullable=False)
-    
+
     # Campos gerais
     project_description = db.Column(db.Text, nullable=False)
     project_objectives = db.Column(db.Text, nullable=False)
     category = db.Column(db.String(20), nullable=False, default='texto')
     created_at = db.Column(db.DateTime, nullable=False, default=db.func.now())
+
+    # Foreign key to User (optional for backward compatibility)
+    # user_id = db.Column(db.UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
     
     # Campos específicos de texto
     language = db.Column(db.String(50), nullable=True)
@@ -138,6 +149,32 @@ class Prompt(db.Model):
 
     def __repr__(self):
         return f'<Prompt {self.project_name}>'
+
+# User Model for Authentication
+class User(db.Model):
+    id = db.Column(db.UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=db.func.now())
+    is_active = db.Column(db.Boolean, default=True)
+
+    # Relationship with prompts (commented out until migration is resolved)
+    # prompts = db.relationship('Prompt', backref='user', lazy=True)
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+    def __repr__(self):
+        return f'<User {self.username}>'
+
+# Attach db, Prompt, and User to app for API access
+app.db = db
+app.Prompt = Prompt
+app.User = User
 
 # Rotas
 @app.route('/')

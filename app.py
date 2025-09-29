@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
@@ -175,6 +175,84 @@ class User(db.Model):
 app.db = db
 app.Prompt = Prompt
 app.User = User
+
+# Rotas de Autenticação Web
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        user = User.query.filter_by(username=username).first()
+        if user and check_password_hash(user.password_hash, password):
+            session['user_id'] = str(user.id)
+            session['username'] = user.username
+            flash('Login realizado com sucesso!', 'success')
+            return redirect(url_for('index'))
+        else:
+            flash('Credenciais inválidas.', 'error')
+
+    return render_template('login.html')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        if User.query.filter_by(username=username).first():
+            flash('Nome de usuário já existe.', 'error')
+            return redirect(url_for('register'))
+
+        if User.query.filter_by(email=email).first():
+            flash('Email já cadastrado.', 'error')
+            return redirect(url_for('register'))
+
+        user = User(
+            username=username,
+            email=email,
+            password_hash=generate_password_hash(password)
+        )
+        db.session.add(user)
+        db.session.commit()
+
+        session['user_id'] = str(user.id)
+        session['username'] = user.username
+        flash('Conta criada com sucesso!', 'success')
+        return redirect(url_for('index'))
+
+    return render_template('register.html')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash('Logout realizado com sucesso!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/profile')
+def profile():
+    if 'user_id' not in session:
+        flash('Você precisa estar logado para acessar esta página.', 'error')
+        return redirect(url_for('login'))
+
+    user = User.query.get(uuid.UUID(session['user_id']))
+    if not user:
+        session.clear()
+        flash('Sessão inválida.', 'error')
+        return redirect(url_for('login'))
+
+    return render_template('profile.html', user=user)
+
+# Context processor para verificar se usuário está logado
+@app.context_processor
+def inject_user():
+    return {
+        'current_user': {
+            'id': session.get('user_id'),
+            'username': session.get('username')
+        } if 'user_id' in session else None
+    }
 
 # Rotas
 @app.route('/')

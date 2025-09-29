@@ -466,12 +466,27 @@
                 <p>O Prompt Master segue rigorosamente o padrão <strong>Semantic Versioning 2.0.0</strong>, garantindo previsibilidade e compatibilidade para os usuários.</p>
 
                 <div class="alert alert-info">
-                    <h5>Versão Atual: <strong>1.0.0</strong></h5>
-                    <p class="mb-0">Lançamento inicial estável com todas as funcionalidades core implementadas e testadas.</p>
+                    <h5>Versão Atual: <strong>1.1.0</strong></h5>
+                    <p class="mb-0">Lançamento com API REST e Autenticação - Funcionalidades core expandidas com capacidades de integração.</p>
                 </div>
 
                 <h4 class="mb-3">Histórico de Versões</h4>
                 <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-primary"></div>
+                        <div class="timeline-content">
+                            <h6 class="timeline-title">v1.1.0 - API REST & Autenticação</h6>
+                            <p class="small text-muted">29/09/2025</p>
+                            <ul class="small mb-0">
+                                <li>✅ API REST completa com 8 endpoints CRUD</li>
+                                <li>✅ Sistema de autenticação JWT seguro</li>
+                                <li>✅ Serialização automática com Marshmallow</li>
+                                <li>✅ Gerenciamento de usuários (registro/login/perfil)</li>
+                                <li>✅ Documentação de API integrada</li>
+                                <li>✅ Expansão modular mantendo compatibilidade</li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="timeline-item">
                         <div class="timeline-marker bg-success"></div>
                         <div class="timeline-content">
@@ -547,17 +562,17 @@
                         <h5 class="mb-0"><i class="bi bi-check-circle"></i> Próximas Versões</h5>
                     </div>
                     <div class="card-body">
-                        <h6>v1.1.0 (Q1 2026)</h6>
+                        <h6>v1.2.0 (Q1 2026)</h6>
                         <ul class="small mb-3">
-                            <li>API REST completa</li>
                             <li>Templates compartilhados</li>
                             <li>Interface colaborativa</li>
-                        </ul>
-                        <h6>v1.2.0 (Q2 2026)</h6>
-                        <ul class="small mb-0">
                             <li>Importação de prompts</li>
+                        </ul>
+                        <h6>v1.3.0 (Q2 2026)</h6>
+                        <ul class="small mb-0">
                             <li>Análise de performance</li>
                             <li>Integrações externas</li>
+                            <li>Dashboard de métricas</li>
                         </ul>
                     </div>
                 </div>
@@ -572,13 +587,22 @@
                 <div class="roadmap-phase">
                     <h4 class="text-primary"><i class="bi bi-rocket-takeoff me-2"></i>Fase 1: Expansão de Capacidades (Q1 2026)</h4>
                     <div class="ms-4 mb-4">
-                        <h5>API REST Completa</h5>
+                        <h5><i class="bi bi-check-circle-fill text-success me-2"></i>API REST Completa</h5>
                         <ul class="small">
-                            <li>Endpoints RESTful para todas as operações CRUD</li>
-                            <li>Autenticação JWT para acesso seguro</li>
-                            <li>Documentação OpenAPI/Swagger automática</li>
-                            <li>Rate limiting e throttling configuráveis</li>
-                            <li>Versionamento de API (v1, v2)</li>
+                            <li>✅ Endpoints RESTful para todas as operações CRUD</li>
+                            <li>✅ Autenticação JWT para acesso seguro</li>
+                            <li>✅ Documentação OpenAPI/Swagger automática</li>
+                            <li>✅ Rate limiting e throttling configuráveis</li>
+                            <li>✅ Versionamento de API (v1, v2)</li>
+                        </ul>
+
+                        <h5><i class="bi bi-check-circle-fill text-success me-2"></i>Sistema de Usuários</h5>
+                        <ul class="small">
+                            <li>✅ Sistema de usuários e permissões</li>
+                            <li>✅ Autenticação JWT completa</li>
+                            <li>✅ Gerenciamento de perfis de usuário</li>
+                            <li>✅ Segurança de senhas com hashing</li>
+                            <li>✅ Validação de entrada robusta</li>
                         </ul>
 
                         <h5>Sistema de Templates Compartilhados</h5>

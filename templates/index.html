@@ -1,44 +1,249 @@
 {% extends "base.html" %}
-{% block title %}Criar Prompt{% endblock %}
+{% block title %}Prompt Master - Portal{% endblock %}
 {% block content %}
-<div class="bg-white text-gray-900 rounded-lg shadow-md p-6">
-    <h1 class="text-3xl font-bold mb-6">Criar Novo Prompt</h1>
-    <form method="POST" class="space-y-6">
-        {{ form.hidden_tag() }}
-        <div>
-            <label class="block text-sm font-medium text-gray-700">{{ form.project_name.label }}</label>
-            {{ form.project_name(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+        <!-- Hero Section -->
+        <div class="text-center mb-5">
+            <h1 class="display-1 fw-bold text-white mb-3" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                <i class="bi bi-robot text-primary me-3"></i>Prompt Master
+            </h1>
+            <p class="lead text-light mb-4" style="font-size: 1.25rem;">
+                Plataforma profissional para criação de prompts personalizados com IA
+            </p>
+            <div class="d-flex justify-content-center mb-4">
+                <div class="badge bg-primary fs-6 px-4 py-2 rounded-pill">
+                    <i class="bi bi-stars me-2"></i>15 Categorias Disponíveis
+                </div>
+            </div>
         </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">{{ form.project_description.label }}</label>
-            {{ form.project_description(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+
+        <!-- Control Panel -->
+        <div class="card shadow-lg border-0 rounded-4" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);">
+            <div class="card-body p-5">
+                <h2 class="h3 text-center mb-4 text-dark fw-bold">
+                    <i class="bi bi-grid-3x3-gap text-primary me-2"></i>
+                    Selecione o Tipo de Prompt
+                </h2>
+
+                <!-- Buttons Grid -->
+                <div class="row g-4">
+                    <!-- Texto -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button onclick="window.location.href='{{ url_for('criar_texto') }}'"
+                                class="btn btn-primary w-100 h-100 p-4 rounded-4 shadow-sm hover-shadow-lg transition-all"
+                                style="min-height: 120px; background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); border: none;">
+                            <div class="text-center text-white">
+                                <i class="bi bi-file-text display-4 mb-2"></i>
+                                <div class="fw-bold">Texto</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Imagem -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button onclick="window.location.href='{{ url_for('criar_imagem') }}'"
+                                class="btn w-100 h-100 p-4 rounded-4 shadow-sm hover-shadow-lg transition-all"
+                                style="min-height: 120px; background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%); border: none;">
+                            <div class="text-center text-white">
+                                <i class="bi bi-image display-4 mb-2"></i>
+                                <div class="fw-bold">Imagem</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Áudio -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button onclick="window.location.href='{{ url_for('criar_audio') }}'"
+                                class="btn w-100 h-100 p-4 rounded-4 shadow-sm hover-shadow-lg transition-all"
+                                style="min-height: 120px; background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%); border: none;">
+                            <div class="text-center text-white">
+                                <i class="bi bi-music-note-beamed display-4 mb-2"></i>
+                                <div class="fw-bold">Áudio</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Código -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button onclick="window.location.href='{{ url_for('criar_codigo') }}'"
+                                class="btn w-100 h-100 p-4 rounded-4 shadow-sm hover-shadow-lg transition-all"
+                                style="min-height: 120px; background: linear-gradient(135deg, #dc3545 0%, #bd2130 100%); border: none;">
+                            <div class="text-center text-white">
+                                <i class="bi bi-code-square display-4 mb-2"></i>
+                                <div class="fw-bold">Código</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Vídeo -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button onclick="window.location.href='{{ url_for('criar_video') }}'"
+                                class="btn w-100 h-100 p-4 rounded-4 shadow-sm hover-shadow-lg transition-all"
+                                style="min-height: 120px; background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%); border: none;">
+                            <div class="text-center text-dark">
+                                <i class="bi bi-film display-4 mb-2"></i>
+                                <div class="fw-bold">Vídeo</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Documento -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button onclick="window.location.href='{{ url_for('criar_documento') }}'"
+                                class="btn w-100 h-100 p-4 rounded-4 shadow-sm hover-shadow-lg transition-all"
+                                style="min-height: 120px; background: linear-gradient(135deg, #6610f2 0%, #5a0fc8 100%); border: none;">
+                            <div class="text-center text-white">
+                                <i class="bi bi-file-earmark-text display-4 mb-2"></i>
+                                <div class="fw-bold">Documento</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Apresentação -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button onclick="window.location.href='{{ url_for('criar_apresentacao') }}'"
+                                class="btn w-100 h-100 p-4 rounded-4 shadow-sm hover-shadow-lg transition-all"
+                                style="min-height: 120px; background: linear-gradient(135deg, #20c997 0%, #1aa085 100%); border: none;">
+                            <div class="text-center text-white">
+                                <i class="bi bi-easel display-4 mb-2"></i>
+                                <div class="fw-bold">Apresentação</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Infográfico -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button onclick="window.location.href='{{ url_for('criar_infografico') }}'"
+                                class="btn w-100 h-100 p-4 rounded-4 shadow-sm hover-shadow-lg transition-all"
+                                style="min-height: 120px; background: linear-gradient(135deg, #17a2b8 0%, #138496 100%); border: none;">
+                            <div class="text-center text-white">
+                                <i class="bi bi-bar-chart display-4 mb-2"></i>
+                                <div class="fw-bold">Infográfico</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Animação -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button onclick="window.location.href='{{ url_for('criar_animacao') }}'"
+                                class="btn w-100 h-100 p-4 rounded-4 shadow-sm hover-shadow-lg transition-all"
+                                style="min-height: 120px; background: linear-gradient(135deg, #e83e8c 0%, #c8237a 100%); border: none;">
+                            <div class="text-center text-white">
+                                <i class="bi bi-play-circle display-4 mb-2"></i>
+                                <div class="fw-bold">Animação</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Website/App -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button onclick="window.location.href='{{ url_for('criar_website') }}'"
+                                class="btn w-100 h-100 p-4 rounded-4 shadow-sm hover-shadow-lg transition-all"
+                                style="min-height: 120px; background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%); border: none;">
+                            <div class="text-center text-white">
+                                <i class="bi bi-globe display-4 mb-2"></i>
+                                <div class="fw-bold">Website</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Dados -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button onclick="window.location.href='{{ url_for('criar_dados') }}'"
+                                class="btn w-100 h-100 p-4 rounded-4 shadow-sm hover-shadow-lg transition-all"
+                                style="min-height: 120px; background: linear-gradient(135deg, #fd7e14 0%, #e8680d 100%); border: none;">
+                            <div class="text-center text-white">
+                                <i class="bi bi-graph-up display-4 mb-2"></i>
+                                <div class="fw-bold">Dados</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Tradução -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button onclick="window.location.href='{{ url_for('criar_traducao') }}'"
+                                class="btn w-100 h-100 p-4 rounded-4 shadow-sm hover-shadow-lg transition-all"
+                                style="min-height: 120px; background: linear-gradient(135deg, #6c5ce7 0%, #5a4fcf 100%); border: none;">
+                            <div class="text-center text-white">
+                                <i class="bi bi-translate display-4 mb-2"></i>
+                                <div class="fw-bold">Tradução</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Resumo -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button onclick="window.location.href='{{ url_for('criar_resumo') }}'"
+                                class="btn w-100 h-100 p-4 rounded-4 shadow-sm hover-shadow-lg transition-all"
+                                style="min-height: 120px; background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%); border: none;">
+                            <div class="text-center text-white">
+                                <i class="bi bi-file-minus display-4 mb-2"></i>
+                                <div class="fw-bold">Resumo</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Marketing -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button onclick="window.location.href='{{ url_for('criar_marketing') }}'"
+                                class="btn w-100 h-100 p-4 rounded-4 shadow-sm hover-shadow-lg transition-all"
+                                style="min-height: 120px; background: linear-gradient(135deg, #dc3545 0%, #bd2130 100%); border: none;">
+                            <div class="text-center text-white">
+                                <i class="bi bi-megaphone display-4 mb-2"></i>
+                                <div class="fw-bold">Marketing</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Educação -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button onclick="window.location.href='{{ url_for('criar_educacao') }}'"
+                                class="btn w-100 h-100 p-4 rounded-4 shadow-sm hover-shadow-lg transition-all"
+                                style="min-height: 120px; background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%); border: none;">
+                            <div class="text-center text-dark">
+                                <i class="bi bi-mortarboard display-4 mb-2"></i>
+                                <div class="fw-bold">Educação</div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">{{ form.project_objectives.label }}</label>
-            {{ form.project_objectives(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
+
+        <!-- Stats Section -->
+        <div class="text-center mt-5">
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <div class="d-flex align-items-center text-light">
+                        <i class="bi bi-lightning-charge text-warning fs-4 me-2"></i>
+                        <span class="fw-semibold">15 Categorias</span>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="d-flex align-items-center text-light">
+                        <i class="bi bi-robot text-info fs-4 me-2"></i>
+                        <span class="fw-semibold">IA Otimizada</span>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="d-flex align-items-center text-light">
+                        <i class="bi bi-shield-check text-success fs-4 me-2"></i>
+                        <span class="fw-semibold">Profissional</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">{{ form.language.label }}</OZ label>
-            {{ form.language(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">{{ form.temperature.label }}</label>
-            {{ form.temperature(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">{{ form.tone.label }}</label>
-            {{ form.tone(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">{{ form.persona.label }}</label>
-            {{ form.persona(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">{{ form.protocols.label }}</label>
-            {{ form.protocols(class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500") }}
-        </div>
-        {{ form.submit(class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500") }}
-    </form>
-    <a href="{{ url_for('list_prompts') }}" class="mt-4 inline-block text-blue-400 hover:text-blue-300">Ver Prompts</a>
+    </div>
 </div>
+
+<style>
+.hover-shadow-lg:hover {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+    transform: translateY(-2px);
+}
+.transition-all {
+    transition: all 0.3s ease;
+}
+</style>
 {% endblock %}

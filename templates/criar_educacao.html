@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% block title %}Criar Prompt de Educação{% endblock %}
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-green-50 py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10 col-xl-8">
+                <!-- Header Section -->
+                <div class="text-center mb-5">
+                    <div class="d-inline-flex align-items-center justify-content-center w-20 h-20 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full mb-4 shadow-lg">
+                        <i class="bi bi-mortarboard text-white fs-1"></i>
+                    </div>
+                    <h1 class="display-5 fw-bold text-gray-800 mb-3">Criar Prompt de Educação</h1>
+                    <p class="lead text-muted">Configure um prompt detalhado para conteúdo educacional</p>
+                    <div class="progress" style="height: 4px;">
+                        <div class="progress-bar bg-gradient-to-r from-emerald-500 to-teal-500" role="progressbar" style="width: 100%"></div>
+                    </div>
+                </div>
+
+                <!-- Main Form Card -->
+                <div class="card shadow-2xl border-0 rounded-4 overflow-hidden" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);">
+                    <div class="card-body p-5">
+                        <form method="POST" novalidate class="needs-validation">
+                            {{ form.hidden_tag() }}
+
+                            <!-- Project Name -->
+                            <div class="mb-4">
+                                <div class="position-relative">
+                                    <label for="{{ form.project_name.id }}" class="form-label fw-bold text-gray-700 mb-2">
+                                        <i class="bi bi-tag text-emerald me-2"></i>{{ form.project_name.label }}
+                                    </label>
+                                    {{ form.project_name(class="form-control form-control-lg border-0 shadow-sm", style="border-radius: 15px; padding: 1rem 1.5rem; background: rgba(255, 255, 255, 0.8);", placeholder="Nome do seu material educacional") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.project_name.errors %}
+                                            {{ error %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Description & Objectives -->
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="position-relative">
+                                        <label for="{{ form.project_description.id }}" class="form-label fw-bold text-gray-700 mb-2">
+                                            <i class="bi bi-card-text text-primary me-2"></i>{{ form.project_description.label }}
+                                        </label>
+                                        {{ form.project_description(class="form-control border-0 shadow-sm", style="border-radius: 15px; padding: 1rem 1.5rem; background: rgba(255, 255, 255, 0.8); min-height: 120px;", rows="4", placeholder="Descreva o tópico e conceitos a serem ensinados") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.project_description.errors %}
+                                                {{ error %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="position-relative">
+                                        <label for="{{ form.project_objectives.id }}" class="form-label fw-bold text-gray-700 mb-2">
+                                            <i class="bi bi-bullseye text-warning me-2"></i>{{ form.project_objectives.label }}
+                                        </label>
+                                        {{ form.project_objectives(class="form-control border-0 shadow-sm", style="border-radius: 15px; padding: 1rem 1.5rem; background: rgba(255, 255, 255, 0.8); min-height: 120px;", rows="4", placeholder="Objetivos de aprendizagem específicos") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.project_objectives.errors %}
+                                                {{ error %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Education Configuration Section -->
+                            <div class="mb-4">
+                                <h5 class="fw-bold text-gray-800 mb-3">
+                                    <i class="bi bi-mortarboard text-emerald me-2"></i>Configurações Educacionais
+                                </h5>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="position-relative">
+                                            <label for="{{ form.edu_level.id }}" class="form-label fw-semibold text-gray-700">
+                                                {{ form.edu_level.label }}
+                                            </label>
+                                            {{ form.edu_level(class="form-select border-0 shadow-sm", style="border-radius: 12px; background: rgba(255, 255, 255, 0.8);") }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="position-relative">
+                                            <label for="{{ form.edu_subject.id }}" class="form-label fw-semibold text-gray-700">
+                                                {{ form.edu_subject.label }}
+                                            </label>
+                                            {{ form.edu_subject(class="form-select border-0 shadow-sm", style="border-radius: 12px; background: rgba(255, 255, 255, 0.8);") }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="position-relative">
+                                            <label for="{{ form.edu_format.id }}" class="form-label fw-semibold text-gray-700">
+                                                {{ form.edu_format.label }}
+                                            </label>
+                                            {{ form.edu_format(class="form-select border-0 shadow-sm", style="border-radius: 12px; background: rgba(255, 255, 255, 0.8);") }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="position-relative">
+                                            <label for="{{ form.edu_duration.id }}" class="form-label fw-semibold text-gray-700">
+                                                {{ form.edu_duration.label }}
+                                            </label>
+                                            {{ form.edu_duration(class="form-select border-0 shadow-sm", style="border-radius: 12px; background: rgba(255, 255, 255, 0.8);") }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Submit Section -->
+                            <div class="text-center pt-4 border-top border-light">
+                                <button type="submit" class="btn btn-lg px-5 py-3 rounded-pill shadow-lg position-relative overflow-hidden" style="background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%); border: none; color: white;">
+                                    <span class="position-relative z-index-1">
+                                        <i class="bi bi-mortarboard me-2"></i>Gerar Prompt de Educação
+                                    </span>
+                                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-white opacity-0 hover-opacity-10 transition-all rounded-pill"></div>
+                                </button>
+                                <p class="text-muted mt-3 mb-0">
+                                    <i class="bi bi-info-circle me-1"></i>
+                                    Seu prompt será salvo e poderá ser usado para criar conteúdo educacional
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Navigation Footer -->
+                <div class="text-center mt-4">
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-success btn-lg rounded-pill px-4">
+                            <i class="bi bi-house-door me-2"></i>Voltar ao Início
+                        </a>
+                        <a href="{{ url_for('list_prompts') }}" class="btn btn-outline-success btn-lg rounded-pill px-4">
+                            <i class="bi bi-mortarboard me-2"></i>Ver Meus Materiais
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.shadow-2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.hover-opacity-10:hover {
+    opacity: 0.1 !important;
+}
+.z-index-1 {
+    z-index: 1;
+}
+</style>
+{% endblock %}

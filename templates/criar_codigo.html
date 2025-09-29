@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% block title %}Criar Prompt de Código{% endblock %}
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10 col-xl-8">
+                <!-- Header Section -->
+                <div class="text-center mb-5">
+                    <div class="d-inline-flex align-items-center justify-content-center w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-4 shadow-lg">
+                        <i class="bi bi-code-square text-white fs-1"></i>
+                    </div>
+                    <h1 class="display-5 fw-bold text-gray-800 mb-3">Criar Prompt de Código</h1>
+                    <p class="lead text-muted">Configure um prompt detalhado para geração de código fonte</p>
+                    <div class="progress" style="height: 4px;">
+                        <div class="progress-bar bg-gradient-to-r from-purple-500 to-pink-500" role="progressbar" style="width: 100%"></div>
+                    </div>
+                </div>
+
+                <!-- Main Form Card -->
+                <div class="card shadow-2xl border-0 rounded-4 overflow-hidden" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);">
+                    <div class="card-body p-5">
+                        <form method="POST" novalidate class="needs-validation">
+                            {{ form.hidden_tag() }}
+
+                            <!-- Project Name -->
+                            <div class="mb-4">
+                                <div class="position-relative">
+                                    <label for="{{ form.project_name.id }}" class="form-label fw-bold text-gray-700 mb-2">
+                                        <i class="bi bi-tag text-purple me-2"></i>{{ form.project_name.label }}
+                                    </label>
+                                    {{ form.project_name(class="form-control form-control-lg border-0 shadow-sm", style="border-radius: 15px; padding: 1rem 1.5rem; background: rgba(255, 255, 255, 0.8);", placeholder="Nome do seu projeto de código") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.project_name.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Description & Objectives -->
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="position-relative">
+                                        <label for="{{ form.project_description.id }}" class="form-label fw-bold text-gray-700 mb-2">
+                                            <i class="bi bi-card-text text-primary me-2"></i>{{ form.project_description.label }}
+                                        </label>
+                                        {{ form.project_description(class="form-control border-0 shadow-sm", style="border-radius: 15px; padding: 1rem 1.5rem; background: rgba(255, 255, 255, 0.8); min-height: 120px;", rows="4", placeholder="Descreva a funcionalidade do código") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.project_description.errors %}
+                                                {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="position-relative">
+                                        <label for="{{ form.project_objectives.id }}" class="form-label fw-bold text-gray-700 mb-2">
+                                            <i class="bi bi-bullseye text-warning me-2"></i>{{ form.project_objectives.label }}
+                                        </label>
+                                        {{ form.project_objectives(class="form-control border-0 shadow-sm", style="border-radius: 15px; padding: 1rem 1.5rem; background: rgba(255, 255, 255, 0.8); min-height: 120px;", rows="4", placeholder="Objetivos específicos do código") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.project_objectives.errors %}
+                                                {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Code Configuration Section -->
+                            <div class="mb-4">
+                                <h5 class="fw-bold text-gray-800 mb-3">
+                                    <i class="bi bi-code-square text-purple me-2"></i>Configurações de Código
+                                </h5>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="position-relative">
+                                            <label for="{{ form.language.id }}" class="form-label fw-semibold text-gray-700">
+                                                {{ form.language.label }}
+                                            </label>
+                                            {{ form.language(class="form-select border-0 shadow-sm", style="border-radius: 12px; background: rgba(255, 255, 255, 0.8);") }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="position-relative">
+                                            <label for="{{ form.framework.id }}" class="form-label fw-semibold text-gray-700">
+                                                {{ form.framework.label }}
+                                            </label>
+                                            {{ form.framework(class="form-select border-0 shadow-sm", style="border-radius: 12px; background: rgba(255, 255, 255, 0.8);") }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="position-relative">
+                                            <label for="{{ form.complexity.id }}" class="form-label fw-semibold text-gray-700">
+                                                {{ form.complexity.label }}
+                                            </label>
+                                            {{ form.complexity(class="form-select border-0 shadow-sm", style="border-radius: 12px; background: rgba(255, 255, 255, 0.8);") }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="position-relative">
+                                            <label for="{{ form.purpose.id }}" class="form-label fw-semibold text-gray-700">
+                                                {{ form.purpose.label }}
+                                            </label>
+                                            {{ form.purpose(class="form-select border-0 shadow-sm", style="border-radius: 12px; background: rgba(255, 255, 255, 0.8);") }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Submit Section -->
+                            <div class="text-center pt-4 border-top border-light">
+                                <button type="submit" class="btn btn-lg px-5 py-3 rounded-pill shadow-lg position-relative overflow-hidden" style="background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%); border: none; color: white;">
+                                    <span class="position-relative z-index-1">
+                                        <i class="bi bi-code-square me-2"></i>Gerar Prompt de Código
+                                    </span>
+                                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-white opacity-0 hover-opacity-10 transition-all rounded-pill"></div>
+                                </button>
+                                <p class="text-muted mt-3 mb-0">
+                                    <i class="bi bi-info-circle me-1"></i>
+                                    Seu prompt será salvo e poderá ser usado para gerar código
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Navigation Footer -->
+                <div class="text-center mt-4">
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-purple btn-lg rounded-pill px-4">
+                            <i class="bi bi-house-door me-2"></i>Voltar ao Início
+                        </a>
+                        <a href="{{ url_for('list_prompts') }}" class="btn btn-outline-purple btn-lg rounded-pill px-4">
+                            <i class="bi bi-code-slash me-2"></i>Ver Meus Códigos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.shadow-2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.hover-opacity-10:hover {
+    opacity: 0.1 !important;
+}
+.z-index-1 {
+    z-index: 1;
+}
+.btn-outline-purple {
+    --bs-btn-color: #6f42c1;
+    --bs-btn-border-color: #6f42c1;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #6f42c1;
+    --bs-btn-hover-border-color: #6f42c1;
+    --bs-btn-focus-shadow-rgb: 13, 110, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #6f42c1;
+    --bs-btn-active-border-color: #6f42c1;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #6f42c1;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #6f42c1;
+    --bs-btn-disabled-opacity: 0.65;
+}
+</style>
+{% endblock %}

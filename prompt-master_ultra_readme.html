@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Master - Descrição Completa do Repositório</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        html{scroll-behavior:smooth}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;color:#333;background-color:#f8f9fa;padding-top:76px}
+        .navbar{position:fixed;top:0;width:100%;z-index:1030;margin-bottom:0;background-color:#212529!important;box-shadow:0 2px 4px rgba(0,0,0,0.1)}
+        .highlight{color:#0d6efd;font-weight:bold}
+        .section-title{margin:40px 0 20px;text-align:center;font-size:2rem}
+        .card{margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,0.1);border-radius:12px;transition:transform 0.2s}
+        .card:hover{transform:translateY(-5px)}
+        .accordion-button{font-weight:500}
+        footer{background:#212529;color:white;padding:20px 0;text-align:center;margin-top:40px}
+        footer a{color:#0d6efd;text-decoration:none}
+        footer a:hover{text-decoration:underline}
+        .hero{background:linear-gradient(135deg,#0d6efd,#6610f2);color:white;padding:80px 20px;text-align:center;border-radius:12px;margin-bottom:40px}
+        .hero h1{font-size:3rem;margin-bottom:20px}
+        .hero p{font-size:1.25rem}
+        .badges img{margin:5px}
+        #backToTop{position:fixed;bottom:20px;right:20px;display:none;background-color:#0d6efd;color:white;border:none;border-radius:50%;width:50px;height:50px;font-size:24px;cursor:pointer;box-shadow:0 4px 6px rgba(0,0,0,0.3);transition:background-color 0.3s}
+        #backToTop:hover{background-color:#0b5ed7}
+        .timeline{position:relative;padding-left:30px}.timeline::before{content:'';position:absolute;left:15px;top:0;bottom:0;width:2px;background:#e9ecef}.timeline-item{position:relative;margin-bottom:30px}.timeline-marker{position:absolute;left:-22px;top:5px;width:14px;height:14px;border-radius:50%;border:2px solid #fff}.timeline-content{background:#f8f9fa;padding:15px;border-radius:8px;border-left:4px solid #0d6efd}.timeline-title{margin-bottom:5px;font-weight:bold;color:#0d6efd}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#manifesto">Prompt Master</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#manifesto">Manifesto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#arquivos">Arquivos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#analise">Análise</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#funcoes">Funções</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#versionamento">Versionamento</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#proximos">Próximos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sugestoes">Sugestões</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contribuir">Contribuir</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section id="hero" class="hero">
+            <h1>Prompt Master</h1>
+            <p>Sistema web completo para gerenciamento e criação de prompts de IA estruturados, oferecendo interface intuitiva para múltiplas categorias de conteúdo.</p>
+        </section>
+
+        <section id="manifesto" class="section-title highlight">Manifesto</section>
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="mb-3">Nossa Missão</h3>
+                <p>O Prompt Master surge como resposta à crescente necessidade de padronização e profissionalização na criação de prompts para sistemas de Inteligência Artificial. Nossa missão é democratizar o acesso a ferramentas avançadas de gerenciamento de prompts, permitindo que usuários de todos os níveis - desde iniciantes curiosos até profissionais experientes - possam criar, organizar e otimizar prompts de forma estruturada e eficiente.</p>
+
+                <h3 class="mb-3">Visão Estratégica</h3>
+                <p>Vislumbramos um futuro onde a interação humano-IA seja fluida, intuitiva e produtiva. O Prompt Master aspira ser a plataforma de referência global para gerenciamento de prompts, estabelecendo padrões de qualidade e eficiência que elevem o nível da comunicação com sistemas de IA em todas as esferas da sociedade.</p>
+
+                <h3 class="mb-3">Valores Fundamentais</h3>
+                <ul class="list-unstyled">
+                    <li><strong>🌟 Inovação:</strong> Busca constante por soluções tecnológicas de ponta</li>
+                    <li><strong>🎯 Qualidade:</strong> Compromisso com excelência em cada aspecto</li>
+                    <li><strong>🤝 Acessibilidade:</strong> Democratização do conhecimento e ferramentas</li>
+                    <li><strong>🔄 Evolução:</strong> Adaptação contínua às necessidades do mercado</li>
+                    <li><strong>🤝 Colaboração:</strong> Fomento à comunidade open source</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Impacto Esperado</h5>
+                        <div class="mb-3">
+                            <i class="bi bi-graph-up text-primary" style="font-size: 3rem;"></i>
+                        </div>
+                        <p class="card-text">Aumentar em 300% a eficiência na criação de prompts profissionais</p>
+                        <div class="mt-3">
+                            <i class="bi bi-people text-success" style="font-size: 3rem;"></i>
+                        </div>
+                        <p class="card-text">Capacitar 10.000+ usuários até 2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="arquivos" class="section-title highlight">Arquivos</section>
+        <p class="mb-4">A estrutura do repositório Prompt Master foi cuidadosamente organizada para garantir modularidade, manutenibilidade e escalabilidade. Abaixo, apresentamos uma descrição detalhada de cada arquivo e diretório principal:</p>
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-file-earmark-code"></i> app.py</h5>
+                        <p class="card-text">Núcleo da aplicação Flask. Contém 14 rotas distintas para criação de prompts em diferentes categorias, sistema de logging avançado, integração com SQLAlchemy para persistência de dados e UUID para identificação única de prompts.</p>
+                        <small class="text-muted">1188 linhas de código estruturado</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-ui-forms"></i> forms.py</h5>
+                        <p class="card-text">Definições completas dos formulários WTForms com validação robusta. Inclui 14 classes de formulário distintas, cada uma com campos específicos para categorias como imagem, áudio, código, vídeo, etc.</p>
+                        <small class="text-muted">Formulários dinâmicos e validados</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-file-earmark-text"></i> requirements.txt</h5>
+                        <p class="card-text">Lista exaustiva de dependências Python com versões específicas. Inclui Flask 3.0.3, SQLAlchemy 3.1.1, Flask-Migrate 4.0.5, python-dotenv 1.0.1 e Flask-WTF 1.2.1.</p>
+                        <small class="text-muted">5 dependências críticas</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-gear"></i> manage.py</h5>
+                        <p class="card-text">Script utilitário para operações de banco de dados. Facilita migrações, criação de tabelas e manutenção do schema do banco de dados SQLite.</p>
+                        <small class="text-muted">Ferramenta de administração DB</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-folder"></i> templates/</h5>
+                        <p class="card-text">Coleção completa de 16 templates HTML. Inclui páginas de criação para cada categoria, listagem, visualização detalhada e templates base com herança para consistência visual.</p>
+                        <small class="text-muted">16 templates Jinja2</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-images"></i> static/</h5>
+                        <p class="card-text">Recursos estáticos otimizados: CSS personalizado, JavaScript para interatividade, diretório de exports para downloads e estrutura organizada para assets.</p>
+                        <small class="text-muted">CSS, JS e assets organizados</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-database"></i> migrations/</h5>
+                        <p class="card-text">Sistema de migrações Alembic para controle de versão do banco de dados. Permite evoluções seguras do schema e rollback quando necessário.</p>
+                        <small class="text-muted">Versionamento de schema</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-file-earmark-x"></i> .gitignore</h5>
+                        <p class="card-text">Configuração abrangente de exclusões Git. Protege arquivos sensíveis como .env, __pycache__, ambientes virtuais e backups temporários.</p>
+                        <small class="text-muted">73 regras de exclusão</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-file-earmark-binary"></i> instance/promptmaster.db</h5>
+                        <p class="card-text">Banco de dados SQLite principal. Armazena todos os prompts criados com estrutura relacional otimizada e índices para performance.</p>
+                        <small class="text-muted">Base de dados relacional</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="analise" class="section-title highlight">Análise</section>
+        <div class="row">
+            <div class="col-lg-8">
+                <h3 class="mb-3">Arquitetura Técnica</h3>
+                <p>O Prompt Master adota uma arquitetura <strong>MVC (Model-View-Controller)</strong> robusta, implementada através do framework Flask. A separação clara de responsabilidades garante manutenibilidade e escalabilidade do código.</p>
+
+                <h4 class="mb-2">Backend - Flask & SQLAlchemy</h4>
+                <ul>
+                    <li><strong>Flask 3.0.3:</strong> Framework web leve e extensível com suporte completo a blueprints e middleware</li>
+                    <li><strong>SQLAlchemy 3.1.1:</strong> ORM poderoso com mapeamento objeto-relacional avançado e suporte a migrações</li>
+                    <li><strong>UUID como Chave Primária:</strong> Garante unicidade global e evita conflitos de ID</li>
+                    <li><strong>Flask-Migrate 4.0.5:</strong> Sistema de versionamento de banco de dados com rollback seguro</li>
+                </ul>
+
+                <h4 class="mb-2">Frontend - Bootstrap & Jinja2</h4>
+                <ul>
+                    <li><strong>Bootstrap 5.3.0:</strong> Framework CSS responsivo com componentes modernos</li>
+                    <li><strong>Jinja2 Templates:</strong> Sistema de templates com herança e macros para consistência</li>
+                    <li><strong>WTForms 1.2.1:</strong> Validação robusta de formulários com proteção CSRF</li>
+                    <li><strong>JavaScript ES6+:</strong> Interatividade avançada sem dependências pesadas</li>
+                </ul>
+
+                <h4 class="mb-2">Estrutura de Dados</h4>
+                <p>O modelo de dados suporta <strong>14 categorias distintas</strong> de prompts, cada uma com campos específicos otimizados para o tipo de conteúdo:</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Campos Gerais</h5>
+                        <ul class="small">
+                            <li>UUID único</li>
+                            <li>Nome do projeto</li>
+                            <li>Descrição detalhada</li>
+                            <li>Objetivos específicos</li>
+                            <li>Categoria (14 tipos)</li>
+                            <li>Timestamp de criação</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Campos Específicos por Categoria</h5>
+                        <ul class="small">
+                            <li><strong>Imagem:</strong> Prompts positivo/negativo, estilo, iluminação</li>
+                            <li><strong>Áudio:</strong> Duração, gênero, instrumentos</li>
+                            <li><strong>Código:</strong> Linguagem, framework, complexidade</li>
+                            <li><strong>Vídeo:</strong> Resolução, frame rate, aspect ratio</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="bi bi-diagram-3"></i> Diagrama de Arquitetura</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <div class="bg-light p-2 rounded">
+                                <strong>Cliente Web</strong><br>
+                                <small>Bootstrap + JS</small>
+                            </div>
+                            <div class="my-2">⬇️ HTTP</div>
+                            <div class="bg-light p-2 rounded">
+                                <strong>Flask App</strong><br>
+                                <small>Routes + Logic</small>
+                            </div>
+                            <div class="my-2">⬇️ SQLAlchemy</div>
+                            <div class="bg-light p-2 rounded">
+                                <strong>SQLite DB</strong><br>
+                                <small>UUID Tables</small>
+                            </div>
+                        </div>
+                        <p class="small text-muted">Arquitetura em camadas com separação clara de responsabilidades</p>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="bi bi-shield-check"></i> Segurança</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="small mb-0">
+                            <li>✅ Proteção CSRF</li>
+                            <li>✅ Validação de entrada</li>
+                            <li>✅ Sanitização de dados</li>
+                            <li>✅ Controle de sessão</li>
+                            <li>✅ Logs de auditoria</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="funcoes" class="section-title highlight">Funções</section>
+        <p class="mb-4">O Prompt Master oferece um conjunto abrangente de funcionalidades projetadas para otimizar todo o ciclo de vida do gerenciamento de prompts de IA, desde a concepção até a distribuição.</p>
+        <div class="accordion" id="accordionFuncoes">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                        <i class="bi bi-plus-circle me-2"></i>Criação Inteligente de Prompts
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFuncoes">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h5>14 Categorias Especializadas</h5>
+                                <p>Sistema modular com formulários adaptativos para cada tipo de prompt:</p>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <ul class="small">
+                                            <li><strong>Texto:</strong> Linguagem, tom, persona</li>
+                                            <li><strong>Imagem:</strong> Estilo, iluminação, cores</li>
+                                            <li><strong>Áudio:</strong> Gênero, instrumentos, mood</li>
+                                            <li><strong>Código:</strong> Linguagem, framework, complexidade</li>
+                                            <li><strong>Vídeo:</strong> Resolução, frame rate</li>
+                                            <li><strong>Documento:</strong> Tipo, audiência, formato</li>
+                                            <li><strong>Apresentação:</strong> Slides, duração</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-6">
+                                        <ul class="small">
+                                            <li><strong>Infográfico:</strong> Dados, visualização</li>
+                                            <li><strong>Animação:</strong> Estilo, personagens</li>
+                                            <li><strong>Website:</strong> Tecnologias, features</li>
+                                            <li><strong>Dados:</strong> Análise, visualização</li>
+                                            <li><strong>Tradução:</strong> Idiomas, domínio</li>
+                                            <li><strong>Resumo:</strong> Tipo, comprimento</li>
+                                            <li><strong>Marketing:</strong> Campanha, audiência</li>
+                                            <li><strong>Educação:</strong> Nível, assunto</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="alert alert-info">
+                                    <h6><i class="bi bi-lightbulb"></i> Dica Profissional</h6>
+                                    <p class="small mb-0">Cada categoria possui campos validados especificamente para maximizar a qualidade dos prompts gerados.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                        <i class="bi bi-eye me-2"></i>Gerenciamento Avançado
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFuncoes">
+                    <div class="accordion-body">
+                        <h5>CRUD Completo com UUID</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6><i class="bi bi-search text-primary"></i> Visualização Detalhada</h6>
+                                <ul class="small">
+                                    <li>Página dedicada para cada prompt</li>
+                                    <li>Exibição de metadados completos</li>
+                                    <li>Histórico de criação e modificações</li>
+                                    <li>Visualização JSON estruturada</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6><i class="bi bi-pencil-square text-success"></i> Edição Inteligente</h6>
+                                <ul class="small">
+                                    <li>Formulários pré-preenchidos</li>
+                                    <li>Validação em tempo real</li>
+                                    <li>Preservação de dados existentes</li>
+                                    <li>Rollback automático em erros</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <hr>
+                        <h6><i class="bi bi-trash text-danger"></i> Exclusão Segura</h6>
+                        <p class="small">Sistema de exclusão com confirmação e logs de auditoria para rastreabilidade completa.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                        <i class="bi bi-download me-2"></i>Exportação e Distribuição
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFuncoes">
+                    <div class="accordion-body">
+                        <h5>Formatos Múltiplos para Integração</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Markdown Estruturado</h6>
+                                <ul class="small">
+                                    <li>Headers hierárquicos</li>
+                                    <li>Metadados organizados</li>
+                                    <li>Compatível com GitHub</li>
+                                    <li>Download automático</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>JSON para APIs</h6>
+                                <ul class="small">
+                                    <li>Estrutura padronizada</li>
+                                    <li>Campos específicos por categoria</li>
+                                    <li>UUID para integração</li>
+                                    <li>Formato REST-ready</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="alert alert-warning mt-3">
+                            <h6><i class="bi bi-exclamation-triangle"></i> Compatibilidade</h6>
+                            <p class="small mb-0">Os formatos de exportação são compatíveis com as principais plataformas de IA: ChatGPT, Claude, Midjourney, DALL-E, Stable Diffusion, entre outras.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                        <i class="bi bi-shield-check me-2"></i>Segurança e Validação
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFuncoes">
+                    <div class="accordion-body">
+                        <h5>Proteções em Múltiplas Camadas</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Validação de Dados</h6>
+                                <ul class="small">
+                                    <li>WTForms com validação server-side</li>
+                                    <li>Sanitização automática de entrada</li>
+                                    <li>Proteção contra XSS e injeção</li>
+                                    <li>Validação de tipos de dados</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Controle de Acesso</h6>
+                                <ul class="small">
+                                    <li>Proteção CSRF em formulários</li>
+                                    <li>Controle de sessão Flask</li>
+                                    <li>Logs de auditoria completos</li>
+                                    <li>Rate limiting preparado</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                        <i class="bi bi-graph-up me-2"></i>Analytics e Relatórios
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFuncoes">
+                    <div class="accordion-body">
+                        <h5>Métricas para Otimização</h5>
+                        <p>Sistema de logging avançado que rastreia:</p>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <i class="bi bi-clock-history text-info" style="font-size: 2rem;"></i>
+                                    <h6>Uso por Categoria</h6>
+                                    <p class="small">Estatísticas de criação por tipo</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <i class="bi bi-graph-up text-success" style="font-size: 2rem;"></i>
+                                    <h6>Performance</h6>
+                                    <p class="small">Tempos de resposta e uso</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <i class="bi bi-shield-check text-warning" style="font-size: 2rem;"></i>
+                                    <h6>Segurança</h6>
+                                    <p class="small">Tentativas de acesso e erros</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="versionamento" class="section-title highlight">Versionamento</section>
+        <div class="row">
+            <div class="col-lg-8">
+                <h3 class="mb-3">Política de Versionamento Semântico (SemVer)</h3>
+                <p>O Prompt Master segue rigorosamente o padrão <strong>Semantic Versioning 2.0.0</strong>, garantindo previsibilidade e compatibilidade para os usuários.</p>
+
+                <div class="alert alert-info">
+                    <h5>Versão Atual: <strong>1.0.0</strong></h5>
+                    <p class="mb-0">Lançamento inicial estável com todas as funcionalidades core implementadas e testadas.</p>
+                </div>
+
+                <h4 class="mb-3">Histórico de Versões</h4>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-success"></div>
+                        <div class="timeline-content">
+                            <h6 class="timeline-title">v1.0.0 - Lançamento Estável</h6>
+                            <p class="small text-muted">28/09/2025</p>
+                            <ul class="small mb-0">
+                                <li>✅ Suporte completo às 14 categorias de prompts</li>
+                                <li>✅ Interface web responsiva com Bootstrap 5</li>
+                                <li>✅ Sistema de banco de dados SQLite com UUID</li>
+                                <li>✅ Exportação em Markdown e JSON</li>
+                                <li>✅ Validação robusta de formulários</li>
+                                <li>✅ Logs de auditoria e segurança</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-primary"></div>
+                        <div class="timeline-content">
+                            <h6 class="timeline-title">v0.9.0 - Release Candidate</h6>
+                            <p class="small text-muted">25/09/2025</p>
+                            <ul class="small mb-0">
+                                <li>🔄 Implementação completa do CRUD</li>
+                                <li>🔄 Sistema de migrações Alembic</li>
+                                <li>🔄 Templates Jinja2 otimizados</li>
+                                <li>🔄 Validação WTForms avançada</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-warning"></div>
+                        <div class="timeline-content">
+                            <h6 class="timeline-title">v0.5.0 - MVP Funcional</h6>
+                            <p class="small text-muted">20/09/2025</p>
+                            <ul class="small mb-0">
+                                <li>🏗️ Estrutura Flask básica</li>
+                                <li>🏗️ Modelos SQLAlchemy iniciais</li>
+                                <li>🏗️ Interface básica para texto e imagem</li>
+                                <li>🏗️ Configuração de ambiente</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-secondary"></div>
+                        <div class="timeline-content">
+                            <h6 class="timeline-title">v0.1.0 - Proof of Concept</h6>
+                            <p class="small text-muted">15/09/2025</p>
+                            <ul class="small mb-0">
+                                <li>🎯 Conceito inicial validado</li>
+                                <li>🎯 Prototipagem de interface</li>
+                                <li>🎯 Definição de arquitetura</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="bi bi-tag"></i> SemVer 2.0.0</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>MAJOR.MINOR.PATCH</h6>
+                        <ul class="small mb-0">
+                            <li><strong>MAJOR:</strong> Quebra de compatibilidade</li>
+                            <li><strong>MINOR:</strong> Novos recursos compatíveis</li>
+                            <li><strong>PATCH:</strong> Correções de bugs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="bi bi-check-circle"></i> Próximas Versões</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>v1.1.0 (Q1 2026)</h6>
+                        <ul class="small mb-3">
+                            <li>API REST completa</li>
+                            <li>Templates compartilhados</li>
+                            <li>Interface colaborativa</li>
+                        </ul>
+                        <h6>v1.2.0 (Q2 2026)</h6>
+                        <ul class="small mb-0">
+                            <li>Importação de prompts</li>
+                            <li>Análise de performance</li>
+                            <li>Integrações externas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="proximos" class="section-title highlight">Próximos Passos</section>
+        <div class="row">
+            <div class="col-lg-8">
+                <h3 class="mb-4">Roadmap Estratégico 2026</h3>
+
+                <div class="roadmap-phase">
+                    <h4 class="text-primary"><i class="bi bi-rocket-takeoff me-2"></i>Fase 1: Expansão de Capacidades (Q1 2026)</h4>
+                    <div class="ms-4 mb-4">
+                        <h5>API REST Completa</h5>
+                        <ul class="small">
+                            <li>Endpoints RESTful para todas as operações CRUD</li>
+                            <li>Autenticação JWT para acesso seguro</li>
+                            <li>Documentação OpenAPI/Swagger automática</li>
+                            <li>Rate limiting e throttling configuráveis</li>
+                            <li>Versionamento de API (v1, v2)</li>
+                        </ul>
+
+                        <h5>Sistema de Templates Compartilhados</h5>
+                        <ul class="small">
+                            <li>Biblioteca de templates pré-configurados</li>
+                            <li>Categorização inteligente por uso</li>
+                            <li>Sistema de avaliação e comentários</li>
+                            <li>Busca avançada com filtros</li>
+                            <li>Compatibilidade entre categorias</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="roadmap-phase">
+                    <h4 class="text-success"><i class="bi bi-people-fill me-2"></i>Fase 2: Colaboração e Comunidade (Q2 2026)</h4>
+                    <div class="ms-4 mb-4">
+                        <h5>Interface Colaborativa</h5>
+                        <ul class="small">
+                            <li>Sistema de usuários e permissões</li>
+                            <li>Compartilhamento de prompts entre equipes</li>
+                            <li>Comentários e feedback em tempo real</li>
+                            <li>Versionamento colaborativo de prompts</li>
+                            <li>Notificações de atividades</li>
+                        </ul>
+
+                        <h5>Importação e Integração</h5>
+                        <ul class="small">
+                            <li>Importação de prompts de múltiplos formatos</li>
+                            <li>Integrações com plataformas de IA</li>
+                            <li>Conectores para ferramentas externas</li>
+                            <li>Sincronização bidirecional</li>
+                            <li>Backup e restore automatizados</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="roadmap-phase">
+                    <h4 class="text-warning"><i class="bi bi-graph-up me-2"></i>Fase 3: Analytics e Performance (Q3 2026)</h4>
+                    <div class="ms-4 mb-4">
+                        <h5>Análise de Performance</h5>
+                        <ul class="small">
+                            <li>Dashboard de métricas em tempo real</li>
+                            <li>Análise de uso por categoria</li>
+                            <li>Relatórios de produtividade</li>
+                            <li>Identificação de padrões de sucesso</li>
+                            <li>Recomendações baseadas em IA</li>
+                        </ul>
+
+                        <h5>Otimização de UX</h5>
+                        <ul class="small">
+                            <li>Interface adaptativa baseada em uso</li>
+                            <li>Atalhos de teclado personalizáveis</li>
+                            <li>Temas e personalizações avançadas</li>
+                            <li>Modo offline para trabalho móvel</li>
+                            <li>Integração com ferramentas de produtividade</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="roadmap-phase">
+                    <h4 class="text-info"><i class="bi bi-globe me-2"></i>Fase 4: Expansão Global (Q4 2026)</h4>
+                    <div class="ms-4">
+                        <h5>Internacionalização</h5>
+                        <ul class="small">
+                            <li>Suporte completo a múltiplos idiomas</li>
+                            <li>Localização cultural de templates</li>
+                            <li>Time zones e formatos regionais</li>
+                            <li>Compliance com regulamentações locais</li>
+                        </ul>
+
+                        <h5>Enterprise Features</h5>
+                        <ul class="small">
+                            <li>Instalação em nuvem privada</li>
+                            <li>Integração com Active Directory</li>
+                            <li>Auditoria avançada e compliance</li>
+                            <li>SLA e suporte prioritário</li>
+                            <li>Customizações white-label</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="bi bi-trophy"></i> Metas 2026</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <span>Usuários Ativos</span>
+                                <strong>50.000+</strong>
+                            </div>
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar bg-primary" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <span>Prompts Criados</span>
+                                <strong>1M+</strong>
+                            </div>
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar bg-success" style="width: 15%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <span>Países</span>
+                                <strong>50+</strong>
+                            </div>
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar bg-warning" style="width: 10%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="bi bi-lightbulb"></i> Inovação Contínua</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>IA Integrada</h6>
+                        <p class="small">Sugestões automáticas de melhoria para prompts baseadas em análise de performance.</p>
+
+                        <h6>Aprendizado Adaptativo</h6>
+                        <p class="small">Sistema que aprende com padrões de uso para otimizar a experiência do usuário.</p>
+
+                        <h6>Ecossistema Aberto</h6>
+                        <p class="small">APIs abertas para integrações de terceiros e expansão da comunidade.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="faq" class="section-title highlight">FAQ</section>
+        <div class="accordion" id="accordionFAQ">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                        <i class="bi bi-tools me-2"></i>Como instalar e executar o Prompt Master?
+                    </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
+                    <div class="accordion-body">
+                        <h6>Pré-requisitos:</h6>
+                        <ul class="small">
+                            <li>Python 3.8 ou superior instalado</li>
+                            <li>Git para controle de versão</li>
+                            <li>Navegador web moderno</li>
+                        </ul>
+
+                        <h6>Passos de Instalação:</h6>
+                        <ol class="small">
+                            <li><code>git clone https://github.com/lscheffel/Prompt-Master.git</code></li>
+                            <li><code>cd Prompt-Master</code></li>
+                            <li><code>python -m venv venv</code> (crie ambiente virtual)</li>
+                            <li><code>venv\Scripts\activate</code> (Windows) ou <code>source venv/bin/activate</code> (Linux/Mac)</li>
+                            <li><code>pip install -r requirements.txt</code></li>
+                            <li><code>python app.py</code></li>
+                        </ol>
+
+                        <div class="alert alert-info mt-3">
+                            <small><strong>Dica:</strong> O servidor iniciará na porta 5000. Acesse <code>http://localhost:5000</code> no navegador.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                        <i class="bi bi-grid me-2"></i>Quais categorias de prompts são suportadas?
+                    </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                    <div class="accordion-body">
+                        <p>O Prompt Master suporta <strong>14 categorias especializadas</strong> de prompts, cada uma com campos específicos otimizados:</p>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6><i class="bi bi-file-text text-primary"></i> Conteúdo Criativo</h6>
+                                <ul class="small">
+                                    <li><strong>Texto:</strong> Artigos, histórias, diálogos</li>
+                                    <li><strong>Imagem:</strong> Descrições visuais detalhadas</li>
+                                    <li><strong>Áudio:</strong> Música, podcasts, efeitos sonoros</li>
+                                    <li><strong>Vídeo:</strong> Roteiros, storyboards</li>
+                                    <li><strong>Animação:</strong> Personagens, cenários</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6><i class="bi bi-briefcase text-success"></i> Conteúdo Profissional</h6>
+                                <ul class="small">
+                                    <li><strong>Código:</strong> Desenvolvimento, debugging</li>
+                                    <li><strong>Website:</strong> Design, funcionalidades</li>
+                                    <li><strong>Documento:</strong> Relatórios, manuais</li>
+                                    <li><strong>Apresentação:</strong> Slides, discursos</li>
+                                    <li><strong>Infográfico:</strong> Visualização de dados</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <h6><i class="bi bi-translate text-warning"></i> Processamento</h6>
+                                <ul class="small">
+                                    <li><strong>Tradução:</strong> Idiomas, contextos</li>
+                                    <li><strong>Resumo:</strong> Síntese, pontos-chave</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6><i class="bi bi-bar-chart text-info"></i> Análise & Marketing</h6>
+                                <ul class="small">
+                                    <li><strong>Dados:</strong> Análises, visualizações</li>
+                                    <li><strong>Marketing:</strong> Campanhas, estratégias</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                        <i class="bi bi-download me-2"></i>É possível exportar prompts para outros formatos?
+                    </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                    <div class="accordion-body">
+                        <h6>Formatos de Exportação Suportados:</h6>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6><i class="bi bi-markdown text-primary"></i> Markdown Estruturado</h6>
+                                <ul class="small">
+                                    <li>Compatível com GitHub, GitLab</li>
+                                    <li>Headers hierárquicos organizados</li>
+                                    <li>Metadados completos preservados</li>
+                                    <li>Formatação rica mantida</li>
+                                    <li>Download automático com timestamp</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6><i class="bi bi-code-slash text-success"></i> JSON Estruturado</h6>
+                                <ul class="small">
+                                    <li>Formato padrão para APIs</li>
+                                    <li>Todos os campos preservados</li>
+                                    <li>UUID único mantido</li>
+                                    <li>Compatível com sistemas externos</li>
+                                    <li>Formato REST-ready</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h6>Compatibilidade com Plataformas de IA:</h6>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge bg-primary">ChatGPT</span>
+                                    <span class="badge bg-success">Claude</span>
+                                    <span class="badge bg-warning">Midjourney</span>
+                                    <span class="badge bg-info">DALL-E</span>
+                                    <span class="badge bg-secondary">Stable Diffusion</span>
+                                    <span class="badge bg-dark">GitHub Copilot</span>
+                                    <span class="badge bg-danger">Bard/Gemini</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                        <i class="bi bi-shield-check me-2"></i>O Prompt Master é seguro para uso profissional?
+                    </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                    <div class="accordion-body">
+                        <h6>Medidas de Segurança Implementadas:</h6>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6><i class="bi bi-lock text-success"></i> Proteção de Dados</h6>
+                                <ul class="small">
+                                    <li>Validação rigorosa de entrada</li>
+                                    <li>Sanitização automática de dados</li>
+                                    <li>Proteção CSRF em formulários</li>
+                                    <li>Controle de sessão Flask seguro</li>
+                                    <li>Logs de auditoria completos</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6><i class="bi bi-database text-primary"></i> Armazenamento Seguro</h6>
+                                <ul class="small">
+                                    <li>Banco SQLite local (não exposto)</li>
+                                    <li>Arquivo .env para secrets</li>
+                                    <li>.gitignore configurado</li>
+                                    <li>UUIDs para identificação única</li>
+                                    <li>Backup manual recomendado</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-success mt-3">
+                            <h6><i class="bi bi-check-circle-fill"></i> Certificação de Segurança</h6>
+                            <p class="small mb-0">O Prompt Master segue as melhores práticas de segurança web e está preparado para ambientes corporativos com políticas de compliance rigorosas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                        <i class="bi bi-graph-up me-2"></i>Como posso contribuir para o desenvolvimento?
+                    </button>
+                </h2>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                    <div class="accordion-body">
+                        <h6>Formas de Contribuição:</h6>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6><i class="bi bi-code-slash text-primary"></i> Desenvolvimento</h6>
+                                <ul class="small">
+                                    <li>Reportar bugs no GitHub Issues</li>
+                                    <li>Enviar pull requests com melhorias</li>
+                                    <li>Implementar novas funcionalidades</li>
+                                    <li>Melhorar documentação</li>
+                                    <li>Escrever testes automatizados</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6><i class="bi bi-people text-success"></i> Comunidade</h6>
+                                <ul class="small">
+                                    <li>Compartilhar templates de prompts</li>
+                                    <li>Ajudar outros usuários</li>
+                                    <li>Traduzir para outros idiomas</li>
+                                    <li>Divulgar o projeto</li>
+                                    <li>Fornecer feedback construtivo</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h6>Processo de Contribuição:</h6>
+                        <ol class="small">
+                            <li>Faça fork do repositório</li>
+                            <li>Crie uma branch descritiva (<code>git checkout -b feature/nova-funcionalidade</code>)</li>
+                            <li>Implemente suas mudanças seguindo os padrões do projeto</li>
+                            <li>Escreva testes para novas funcionalidades</li>
+                            <li>Envie um pull request detalhado</li>
+                        </ol>
+
+                        <div class="alert alert-info mt-3">
+                            <small><strong>Importante:</strong> Todas as contribuições devem seguir o código de conduta e as diretrizes de contribuição disponíveis no repositório.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="sugestoes" class="section-title highlight">Sugestões</section>
+        <div class="row">
+            <div class="col-lg-8">
+                <h3 class="mb-4">Boas Práticas para Uso Profissional</h3>
+
+                <div class="suggestion-category">
+                    <h4 class="text-primary"><i class="bi bi-shield-lock me-2"></i>Segurança e Privacidade</h4>
+                    <div class="ms-4 mb-4">
+                        <ul>
+                            <li><strong>Arquivo .env:</strong> Mantenha sempre protegido e nunca commite no repositório</li>
+                            <li><strong>Ambientes Virtuais:</strong> Use sempre <code>venv</code> para isolamento de dependências</li>
+                            <li><strong>Backup Regular:</strong> Faça backup do banco SQLite periodicamente</li>
+                            <li><strong>Logs de Auditoria:</strong> Monitore os logs para detectar atividades suspeitas</li>
+                            <li><strong>Atualizações:</strong> Mantenha todas as dependências atualizadas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="suggestion-category">
+                    <h4 class="text-success"><i class="bi bi-gear me-2"></i>Otimização de Performance</h4>
+                    <div class="ms-4 mb-4">
+                        <ul>
+                            <li><strong>Banco de Dados:</strong> Considere migração para PostgreSQL em produção</li>
+                            <li><strong>Cache:</strong> Implemente Redis para sessões em alta carga</li>
+                            <li><strong>CDN:</strong> Use CDN para assets estáticos em produção</li>
+                            <li><strong>Gzip:</strong> Configure compressão para respostas HTTP</li>
+                            <li><strong>Monitoramento:</strong> Configure alertas para uso de recursos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="suggestion-category">
+                    <h4 class="text-warning"><i class="bi bi-lightbulb me-2"></i>Melhores Práticas de Prompts</h4>
+                    <div class="ms-4 mb-4">
+                        <ul>
+                            <li><strong>Estrutura Clara:</strong> Use seções bem definidas em seus prompts</li>
+                            <li><strong>Contexto Rico:</strong> Forneça background detalhado quando necessário</li>
+                            <li><strong>Exemplos:</strong> Inclua exemplos de entrada/saída quando aplicável</li>
+                            <li><strong>Iteração:</strong> Teste e refine prompts gradualmente</li>
+                            <li><strong>Documentação:</strong> Mantenha registro de prompts bem-sucedidos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="suggestion-category">
+                    <h4 class="text-info"><i class="bi bi-people me-2"></i>Trabalho em Equipe</h4>
+                    <div class="ms-4">
+                        <ul>
+                            <li><strong>Padronização:</strong> Estabeleça convenções para nomenclatura de prompts</li>
+                            <li><strong>Compartilhamento:</strong> Use templates compartilhados para consistência</li>
+                            <li><strong>Versionamento:</strong> Mantenha histórico de evoluções de prompts</li>
+                            <li><strong>Revisão:</strong> Implemente processo de revisão para prompts críticos</li>
+                            <li><strong>Treinamento:</strong> Capacite a equipe em melhores práticas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="bi bi-checklist"></i> Checklist de Produção</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" disabled>
+                            <label class="form-check-label small">
+                                Ambiente virtual configurado
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" disabled>
+                            <label class="form-check-label small">
+                                Arquivo .env criado e configurado
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" disabled>
+                            <label class="form-check-label small">
+                                Dependências instaladas
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" disabled>
+                            <label class="form-check-label small">
+                                Banco de dados inicializado
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" disabled>
+                            <label class="form-check-label small">
+                                Porta 5000 liberada
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" disabled>
+                            <label class="form-check-label small">
+                                Backup do banco realizado
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="bi bi-exclamation-triangle"></i> Troubleshooting</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Problemas Comuns:</h6>
+                        <ul class="small mb-0">
+                            <li><strong>Porta ocupada:</strong> <code>lsof -i :5000</code></li>
+                            <li><strong>Dependências faltando:</strong> <code>pip install -r requirements.txt</code></li>
+                            <li><strong>Permissões:</strong> Verifique permissões de arquivo</li>
+                            <li><strong>Python version:</strong> Use Python 3.8+</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0"><i class="bi bi-rocket"></i> Próximos Passos</h5>
+                    </div>
+                    <div class="card-body">
+                        <ol class="small mb-0">
+                            <li>Explore todas as 14 categorias</li>
+                            <li>Crie seus primeiros prompts</li>
+                            <li>Exporte e teste em IA</li>
+                            <li>Personalize templates</li>
+                            <li>Contribua com melhorias</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="contribuir" class="section-title highlight">Contribua com o Projeto</section>
+        <div class="row">
+            <div class="col-lg-8">
+                <h3 class="mb-4">Como Contribuir para o Prompt Master</h3>
+                <p>O Prompt Master é um projeto open source que valoriza contribuições da comunidade. Existem várias formas de ajudar a melhorar a plataforma e expandir suas capacidades.</p>
+
+                <div class="contribution-type">
+                    <h4 class="text-primary"><i class="bi bi-code-slash me-2"></i>Contribuições de Código</h4>
+                    <div class="ms-4 mb-4">
+                        <h5>Processo de Contribuição:</h5>
+                        <ol>
+                            <li><strong>Fork:</strong> Faça fork do repositório no GitHub</li>
+                            <li><strong>Branch:</strong> Crie uma branch descritiva (<code>git checkout -b feature/nova-funcionalidade</code>)</li>
+                            <li><strong>Desenvolvimento:</strong> Implemente suas mudanças seguindo os padrões do projeto</li>
+                            <li><strong>Testes:</strong> Escreva testes para novas funcionalidades</li>
+                            <li><strong>Commit:</strong> Faça commits claros e descritivos</li>
+                            <li><strong>Pull Request:</strong> Envie um PR detalhado explicando as mudanças</li>
+                        </ol>
+
+                        <h5>Áreas de Contribuição:</h5>
+                        <ul>
+                            <li><strong>Novas Categorias:</strong> Implemente suporte para novos tipos de prompts</li>
+                            <li><strong>Melhorias de UI:</strong> Aprimore a interface e experiência do usuário</li>
+                            <li><strong>Performance:</strong> Otimize consultas e carregamento de páginas</li>
+                            <li><strong>Segurança:</strong> Implemente validações e proteções adicionais</li>
+                            <li><strong>Internacionalização:</strong> Adicione suporte a novos idiomas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="contribution-type">
+                    <h4 class="text-success"><i class="bi bi-file-earmark-text me-2"></i>Contribuições de Documentação</h4>
+                    <div class="ms-4 mb-4">
+                        <ul>
+                            <li><strong>Tutoriais:</strong> Crie guias passo-a-passo para usuários</li>
+                            <li><strong>Exemplos:</strong> Forneça prompts de exemplo para cada categoria</li>
+                            <li><strong>FAQ:</strong> Expanda as perguntas frequentes</li>
+                            <li><strong>Tradução:</strong> Traduza documentação para outros idiomas</li>
+                            <li><strong>Videos:</strong> Crie tutoriais em vídeo no YouTube</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="contribution-type">
+                    <h4 class="text-warning"><i class="bi bi-bug me-2"></i>Reporte de Bugs</h4>
+                    <div class="ms-4 mb-4">
+                        <p>Encontrou um problema? Ajude-nos a melhorar:</p>
+                        <ul>
+                            <li>Use o template de bug report no GitHub Issues</li>
+                            <li>Forneça passos detalhados para reproduzir</li>
+                            <li>Inclua informações do ambiente (OS, Python version)</li>
+                            <li>Anexe screenshots quando relevante</li>
+                            <li>Sugira uma solução se possível</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="contribution-type">
+                    <h4 class="text-info"><i class="bi bi-lightbulb me-2"></i>Ideias e Sugestões</h4>
+                    <div class="ms-4">
+                        <ul>
+                            <li><strong>Feature Requests:</strong> Sugira novas funcionalidades</li>
+                            <li><strong>Melhorias de UX:</strong> Identifique pontos de melhoria</li>
+                            <li><strong>Integrações:</strong> Proponha conexões com outras ferramentas</li>
+                            <li><strong>Use Cases:</strong> Compartilhe como você usa o Prompt Master</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="bi bi-star"></i> Reconhecimento</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="small">Todos os contribuidores são reconhecidos:</p>
+                        <ul class="small mb-0">
+                            <li>⭐ Créditos no README</li>
+                            <li>🏆 Badges de contribuição</li>
+                            <li>📝 Menção em releases</li>
+                            <li>🎉 Participação em decisões</li>
+                            <li>🚀 Acesso antecipado a features</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="bi bi-chat-dots"></i> Comunidade</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Canais de Comunicação:</h6>
+                        <ul class="small mb-3">
+                            <li><strong>GitHub Discussions:</strong> Debates e ideias</li>
+                            <li><strong>Discord:</strong> Chat em tempo real</li>
+                            <li><strong>Reddit:</strong> r/PromptMaster</li>
+                            <li><strong>LinkedIn:</strong> Grupo profissional</li>
+                        </ul>
+
+                        <h6>Código de Conduta:</h6>
+                        <p class="small mb-0">Respeito, inclusão e colaboração são fundamentais em nossa comunidade.</p>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-header bg-warning text-white">
+                        <h5 class="mb-0"><i class="bi bi-question-circle"></i> Precisa de Ajuda?</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="small mb-0">
+                            <li>📖 Leia a documentação</li>
+                            <li>🔍 Busque em issues existentes</li>
+                            <li>💬 Pergunte na comunidade</li>
+                            <li>📧 Contate os mantenedores</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="https://github.com/lscheffel/Prompt-Master" class="btn btn-primary btn-lg">
+                        <i class="bi bi-github me-2"></i>Ver no GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="badges text-center mt-4">
+            <img src="https://img.shields.io/github/stars/lscheffel/Prompt-Master?style=social" alt="Stars">
+            <img src="https://img.shields.io/github/forks/lscheffel/Prompt-Master?style=social" alt="Forks">
+            <img src="https://img.shields.io/github/issues/lscheffel/Prompt-Master" alt="Issues">
+        </div>
+    </div>
+
+    <button id="backToTop" title="Voltar ao topo"><i class="bi bi-arrow-up"></i></button>
+
+    <footer>
+        <p>&copy; 2025 Prompt Master. <a href="https://github.com/lscheffel/Prompt-Master">Código fonte no GitHub</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Botão voltar ao topo
+        window.onscroll = function() {
+            const backToTop = document.getElementById('backToTop');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTop.style.display = 'block';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        };
+
+        document.getElementById('backToTop').onclick = function() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        };
+    </script>
+</body>
+</html>
